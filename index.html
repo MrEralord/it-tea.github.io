@@ -3,166 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT-TEA | NIS CS Hub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2c3e50; /* Строгий синий */
-            --accent: #e67e22;  /* Оранжевый для акцентов */
-            --bg: #f0f2f5;
-            --card-bg: #ffffff;
-            --text-main: #333;
-            --text-light: #7f8c8d;
-        }
-
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); color: var(--text-main); }
-        
-        /* HEADER */
-        header { background: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .logo { font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; opacity: 0.9; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; color: var(--accent); }
-
-        /* MAIN LAYOUT */
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        
-        /* DASHBOARD GRID */
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
-
-        /* CARDS */
-        .card { background: var(--card-bg); border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s ease; border-top: 4px solid transparent; position: relative; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
-        .card h2 { margin-top: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
-        .card ul { list-style: none; padding: 0; margin-top: 15px; }
-        .card li { margin-bottom: 12px; }
-        .card a { text-decoration: none; color: var(--text-main); font-weight: 500; display: block; padding: 8px 12px; background: #f8f9fa; border-radius: 6px; transition: 0.2s; border-left: 3px solid transparent; }
-        .card a:hover { background: #eef2f7; border-left-color: var(--accent); color: var(--primary); }
-        
-        /* COLOR CODING */
-        .card-cs { border-top-color: #3498db; }    /* Синий для CS */
-        .card-prog { border-top-color: #27ae60; }  /* Зеленый для Prog */
-        .card-assess { border-top-color: #e74c3c; grid-column: span 2; } /* Красный для тестов */
-        .card-lab { border-top-color: #9b59b6; grid-column: span 2; }    /* Фиолетовый для лабы */
-
-        @media (max-width: 768px) {
-            .card-assess, .card-lab { grid-column: span 1; }
-            header { flex-direction: column; gap: 15px; }
-        }
-
-        /* WIDGETS */
-        .badge { background: #e74c3c; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; float: right; }
-        .btn-main { display: inline-block; background: var(--primary); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 10px; width: 100%; text-align: center; box-sizing: border-box; }
-        .btn-main:hover { background: #34495e; }
-
-    </style>
+    <title>IT-Tea | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <header>
-    <div class="logo"><i class="fas fa-mug-hot"></i> IT-TEA.org</div>
-    <nav class="nav-links">
-        <a href="#"><i class="fas fa-user-tie"></i> Teacher's Area</a>
-        <a href="https://github.com/вашни/it-tea.github.io" target="_blank"><i class="fab fa-github"></i> Edit Site</a>
-    </nav>
+    <div class="header-content">
+        <div class="logo"><i class="fas fa-mug-hot"></i> IT-Tea</div>
+        <nav>NIS Oskemen | 2025 Curriculum</nav>
+    </div>
 </header>
 
 <div class="container">
-
-    <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
-        <div>
-            <h1 style="margin: 0; font-size: 1.8rem;">NIS Computer Science Hub</h1>
-            <p style="margin: 5px 0 0; color: var(--text-light);">Focus: Cambridge AS & A Level (2025 Curriculum)</p>
-        </div>
-        <div style="background: #eef2f7; padding: 10px 20px; border-radius: 8px; border-left: 4px solid var(--accent);">
-            <strong><i class="fas fa-lightbulb"></i> Daily LO:</strong> 12.1.1.7 Floating Point Numbers
-        </div>
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h1>Computer Science Resource Hub</h1>
+        <p>Select your grade and subject to start learning.</p>
     </div>
 
-    <div class="dashboard-grid">
-        
+    <div class="grid">
         <div class="card card-cs">
-            <h2><i class="fas fa-microchip" style="color: #3498db;"></i> Grade 11 CS</h2>
-            <p style="font-size: 0.9rem; color: #7f8c8d;">Theory & Architecture</p>
-            <ul>
-                <li><a href="grade11-cs.html">View Full Yearly Plan</a></li>
-            </ul>
+            <h2><i class="fas fa-memory"></i> Grade 11 CS</h2>
+            <p>Theory, Hardware, Security</p>
+            <a href="grade11/cs/index.html" class="btn">Open Course</a>
         </div>
 
         <div class="card card-prog">
-            <h2><i class="fas fa-code" style="color: #27ae60;"></i> Grade 11 Prog</h2>
-            <p style="font-size: 0.9rem; color: #7f8c8d;">Theory & Architecture</p>
-            <ul>
-                <li><a href="grade11-prog.html">View Full Yearly Plan</a></li>
-            </ul>
+            <h2><i class="fas fa-code"></i> Grade 11 Prog</h2>
+            <p>Python, Algorithms, Data</p>
+            <a href="grade11/prog/index.html" class="btn">Open Course</a>
         </div>
 
         <div class="card card-cs">
-            <h2><i class="fas fa-server" style="color: #3498db;"></i> Grade 12 CS</h2>
-            <p style="font-size: 0.9rem; color: #7f8c8d;">Theory & Architecture</p>
-            <ul>
-                <li><a href="grade12-cs.html">View Full Yearly Plan</a></li>
-            </ul>
+            <h2><i class="fas fa-network-wired"></i> Grade 12 CS</h2>
+            <p>Advanced Theory, Floating Point</p>
+            <a href="grade12/cs/index.html" class="btn">Open Course</a>
         </div>
 
         <div class="card card-prog">
-            <h2><i class="fas fa-project-diagram" style="color: #27ae60;"></i> Grade 12 Prog</h2>
-             <p style="font-size: 0.9rem; color: #7f8c8d;">Theory & Architecture</p>
-            <ul>
-                <li><a href="grade12-prog.html">View Full Yearly Plan</a></li>
-            </ul>
+            <h2><i class="fas fa-project-diagram"></i> Grade 12 Prog</h2>
+            <p>OOP, Trees, Stacks & Queues</p>
+            <a href="grade12/prog/index.html" class="btn">Open Course</a>
         </div>
-
     </div>
-
-    <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 10px;">Practice & Assessment</h3>
-    <div class="dashboard-grid">
-        
-        <div class="card card-assess">
-            <h2><i class="fas fa-graduation-cap" style="color: #e74c3c;"></i> Assessment Hub</h2>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div style="flex: 1;">
-                    <strong>Mock Exams (SAT/SAU)</strong>
-                    <ul>
-                        <li><a href="assessment/sat-11.html">Grade 11 Term 3 SAT</a></li>
-                        <li><a href="assessment/sau-12.html">Grade 12 Mock Exam</a></li>
-                    </ul>
-                </div>
-                <div style="flex: 1;">
-                    <strong>Resources</strong>
-                    <ul>
-                        <li><a href="assessment/past-papers.html">Cambridge Past Papers</a></li>
-                        <li><a href="assessment/mark-schemes.html">Mark Schemes & Guides</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="card card-lab">
-            <h2><i class="fas fa-flask" style="color: #9b59b6;"></i> Interactive Lab</h2>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" style="flex: 1; text-align: center; padding: 20px; background: #f8f9fa;">
-                    <i class="fab fa-python" style="font-size: 2rem; display: block; margin-bottom: 10px; color: #3498db;"></i>
-                    Online Python Compiler
-                </a>
-                <a href="interactive/binary.html" style="flex: 1; text-align: center; padding: 20px; background: #f8f9fa;">
-                    <i class="fas fa-calculator" style="font-size: 2rem; display: block; margin-bottom: 10px; color: #e67e22;"></i>
-                    Binary Visualizer
-                </a>
-                <a href="interactive/logic.html" style="flex: 1; text-align: center; padding: 20px; background: #f8f9fa;">
-                    <i class="fas fa-microchip" style="font-size: 2rem; display: block; margin-bottom: 10px; color: #9b59b6;"></i>
-                    Logic Gates Sim
-                </a>
-            </div>
-        </div>
-
-    </div>
-
 </div>
-
-<footer style="text-align: center; padding: 20px; color: #7f8c8d; font-size: 0.9rem;">
-    &copy; 2026 NIS Oskemen Computer Science Dept. | Built for Teachers & Students
-</footer>
 
 </body>
 </html>
