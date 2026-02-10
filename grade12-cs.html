@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 12 CS Syllabus | IT-Tea</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --term1: #2980b9; 
+            --term2: #8e44ad; 
+            --term3: #d35400; 
+            --term4: #27ae60; 
+            --bg: #f4f7f6;
+            --text: #222;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.5; }
+        
+        header { background: var(--primary); color: white; padding: 15px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; }
+        .back-link { color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        
+        /* Term Sections */
+        .term-section { margin-bottom: 60px; }
+        .term-header { 
+            padding: 15px 20px; border-radius: 8px 8px 0 0; 
+            font-size: 1.4rem; font-weight: bold; color: white; 
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .t1 { background: var(--term1); }
+        .t2 { background: var(--term2); }
+        .t3 { background: var(--term3); }
+        .t4 { background: var(--term4); }
+
+        /* Unit & Topic Styling */
+        .unit-block { background: white; border: 1px solid #ddd; border-top: none; padding: 0; margin-bottom: 0; }
+        .unit-block:last-child { border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        .unit-title { 
+            background: #ecf0f1; color: var(--primary); 
+            padding: 15px 20px; font-weight: 800; font-size: 1.1rem; 
+            border-bottom: 2px solid #ddd; border-top: 1px solid #ddd;
+        }
+
+        /* Table Layout */
+        .syllabus-table { width: 100%; border-collapse: collapse; }
+        .syllabus-table th, .syllabus-table td { padding: 12px 20px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
+        .syllabus-table tr:last-child td { border-bottom: none; }
+        .syllabus-table tr:hover { background-color: #f9fbfc; }
+
+        /* Columns */
+        .col-topic { width: 30%; font-weight: 600; color: #2c3e50; border-right: 1px solid #eee; }
+        .col-code { width: 10%; font-family: 'Consolas', monospace; color: #e67e22; font-weight: bold; }
+        .col-lo { width: 60%; color: #444; }
+
+        /* Links */
+        .topic-link { text-decoration: none; color: inherit; display: block; transition: 0.2s; }
+        .topic-link:hover { color: var(--term1); }
+
+        @media (max-width: 768px) {
+            .syllabus-table, .syllabus-table tbody, .syllabus-table tr, .syllabus-table td { display: block; width: 100%; box-sizing: border-box; }
+            .col-topic { width: 100%; background: #f8f9fa; border-bottom: none; border-right: none; padding-bottom: 5px; }
+            .col-code { display: inline-block; width: auto; padding-right: 5px; padding-bottom: 0; }
+            .col-lo { display: inline-block; width: auto; padding-left: 0; padding-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="back-link"><i class="fas fa-chevron-left"></i> Dashboard</a>
+    <h2 style="margin:0;">Grade 12 Computer Science Syllabus</h2>
+</header>
+
+<div class="container">
+
+    <div class="term-section">
+        <div class="term-header t1">Term 1</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.1A - Artificial intelligence</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.1A Artificial intelligence</a></td>
+                    <td class="col-code">12.4.3.1</td>
+                    <td class="col-lo">describe spheres where artificial intelligence is applied: industry, education, medicine, gaming industry, society</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.1A Virtual and augmented reality</a></td>
+                    <td class="col-code">12.4.3.2</td>
+                    <td class="col-lo">explain the purpose of virtual and augmented reality</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.1B - Programming paradigms</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.1B Declarative and imperative programming languages</a></td>
+                    <td class="col-code">12.5.1.1</td>
+                    <td class="col-lo">compare declarative and imperative programming languages</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.1B Expert systems</a></td>
+                    <td class="col-code">12.5.1.2</td>
+                    <td class="col-lo">create a simple expert system</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.1B Stages of compiler design</a></td>
+                    <td class="col-code">12.5.1.3</td>
+                    <td class="col-lo">describe program compilation stages: lexical and syntactic analysis, code generation, and optimization</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.1C - System testing</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic" rowspan="3"><a href="#" class="topic-link">12.1C Project work: Testing. Types of test data</a></td>
+                    <td class="col-code">12.5.3.2</td>
+                    <td class="col-lo">perform testing using normal data</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.3</td>
+                    <td class="col-lo">perform testing using extreme data</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.4</td>
+                    <td class="col-lo">perform testing using erroneous data</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="3"><a href="#" class="topic-link">12.1C Types of programming errors</a></td>
+                    <td class="col-code">12.5.3.1</td>
+                    <td class="col-lo">describe execution errors at program startup</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.5</td>
+                    <td class="col-lo">describe a syntax error in a program code</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.6</td>
+                    <td class="col-lo">describe a logic error in a program code</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="term-section">
+        <div class="term-header t2">Term 2</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.2C - System implementation</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.2C Methods of system implementation</a></td>
+                    <td class="col-code">12.2.1.7</td>
+                    <td class="col-lo">list system implementation methods</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.2.1.8</td>
+                    <td class="col-lo">compare the advantages and disadvantages of system implementation methods</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.2C Project work. Installation. Implementation plan</a></td>
+                    <td class="col-code">12.2...</td>
+                    <td class="col-lo">develop an implementation plan (Note: text partially cut in source)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="term-section">
+        <div class="term-header t3">Term 3</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.3B - Data presentation</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.3B Number systems. Represent positive decimal numbers in binary</a></td>
+                    <td class="col-code">12.1.1.1</td>
+                    <td class="col-lo">convert a number from one number system to another</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.1.1.2</td>
+                    <td class="col-lo">explain the advantages of using hexadecimal numbers in computer systems</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3B Binary addition and binary multiplication</a></td>
+                    <td class="col-code">12.1.1.3</td>
+                    <td class="col-lo">perform the arithmetic operations: addition and multiplication of binary numbers</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.3B Represent positive and negative numbers in two's complement</a></td>
+                    <td class="col-code">12.1.1.4</td>
+                    <td class="col-lo">represents positive and negative numbers in two's complement and specifies the range of n bits</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.1.1.5</td>
+                    <td class="col-lo">perform subtraction using two's complement</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.3B Fixed point numbers and Floating point numbers</a></td>
+                    <td class="col-code">12.1.1.6</td>
+                    <td class="col-lo">use binary numbers with a fixed point to represent fractional numbers with a given number of bits</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.1.1.7</td>
+                    <td class="col-lo">represent positive and negative floating-point decimal numbers in binary</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3B Data structures. Queues & Stacks</a></td>
+                    <td class="col-code">12.5.2.1</td>
+                    <td class="col-lo">describe the operation of stack and queue data structures</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3B Data structures. Binary tree</a></td>
+                    <td class="col-code">12.5.2.2</td>
+                    <td class="col-lo">build a binary tree</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.3C - Communication and networks</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3C Internet, WWW, intranet</a></td>
+                    <td class="col-code">12.6.2.1</td>
+                    <td class="col-lo">distinguish features of the Internet, the World Wide Web, and the Intranet</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3C OSI model</a></td>
+                    <td class="col-code">12.6.1.2</td>
+                    <td class="col-lo">describe the functions of the OSI network model levels</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3C Packet switching & circuit switching</a></td>
+                    <td class="col-code">12.6.1.1</td>
+                    <td class="col-lo">explain the principles of circuit switching and packet switching</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
