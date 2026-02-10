@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Локальные стили для этого урока */
+        /* Локальные стили */
         .img-container { text-align: center; margin: 20px 0; }
         .img-container img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-bottom: 30px; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0; }
 
-        .presentation-card {
-            background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;
-        }
-        
-        /* Стили для Квиза */
-        .quiz-container { background: white; padding: 25px; border-radius: 8px; border-top: 5px solid var(--accent); }
+        /* Таблица сравнения */
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .comparison-table th { background-color: var(--primary); color: white; }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* Блок критериев */
+        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px; }
+        .criteria-item { background: #fff; padding: 15px; border-radius: 6px; border-left: 3px solid var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .criteria-item strong { color: var(--primary); display: block; margin-bottom: 5px; }
+
+        /* Квиз */
+        .quiz-container { background: white; padding: 25px; border-radius: 8px; border-top: 5px solid var(--success); margin-top: 40px; }
         .question { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         .question h4 { margin-top: 0; color: var(--primary); }
         .options label { display: block; padding: 8px; cursor: pointer; border-radius: 4px; transition: 0.2s; }
@@ -37,77 +43,145 @@
         <h1>11.1A Software Categories</h1>
         <div style="text-align: left; display: inline-block; margin-top: 10px;">
             <span class="stage-badge">LO 11.3.1.2</span> Classify application software.<br>
-            <span class="stage-badge">LO 11.3.1.1</span> Justify the choice of applied software.
+            <span class="stage-badge">LO 11.3.1.1</span> Justify the choice of applied software based on goals.
         </div>
     </div>
 
     <div class="theory-block">
-        <h3>1. Software Hierarchy</h3>
-        <p>Software is generally divided into two main categories: <b>System Software</b> and <b>Application Software</b>.</p>
-        
+        <span class="stage-badge">Context</span>
+        <h3>1. The Hardware Foundation</h3>
+        <p>Before understanding software, recall the <b>Von Neumann Architecture</b>. It defines a structure where data and instructions coexist in the same memory.</p>
+        <ul>
+            <li><b>CPU:</b> The brain (CU + ALU).</li>
+            <li><b>Memory Hierarchy:</b> Balances speed vs. capacity (Registers → Cache → RAM → Storage).</li>
+        </ul>
+        <p><em>Insight:</em> Hardware defines the physical limits; Software dictates how that power is harnessed.</p>
+    </div>
+
+    <div class="theory-block">
+        <h3>2. System vs. Application Software</h3>
         <div class="img-container">
-            <img src="../../assets/software-diagram.png" alt="Software Classification Diagram">
+            <img src="../../assets/software-diagram.png" alt="Software Diagram">
             <p style="font-size: 0.8rem; color: #666;">Figure 1: Classification of Software</p>
         </div>
+        <ul>
+            <li><b>System Software:</b> Controls hardware (e.g., OS, Drivers, Compilers). It manages resources like Memory and Processor scheduling.</li>
+            <li><b>Application Software:</b> Programs designed to assist the user with specific tasks (e.g., Word, Photoshop).</li>
+        </ul>
     </div>
 
-   <div class="theory-block">
-        <h3><i class="fas fa-file-pdf" style="color: #e74c3c;"></i> Lesson Slides</h3>
-        <p>Review the slides directly here or download them below.</p>
-        
-        <div style="height: 600px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc;">
-            <iframe src="../../assets/software_presentation.pdf" width="100%" height="100%" style="border:none;">
-            </iframe>
-        </div>
-
-        <div style="text-align: right;">
-            <a href="../../assets/software_presentation.pdf" class="btn" download>
-                <i class="fas fa-download"></i> Download PDF
-            </a>
+    <div class="theory-block">
+        <h3>3. Classifying Application Software</h3>
+        <p>Application software is organized into four distinct categories based on functional intent:</p>
+        <div class="criteria-grid">
+            <div class="criteria-item">
+                <strong>1. Business</strong>
+                Word Processing, Spreadsheets, Project Management. Enhances efficiency.
+            </div>
+            <div class="criteria-item">
+                <strong>2. Graphics & Multimedia</strong>
+                CAD, Desktop Publishing, Video Editing. For creative professionals.
+            </div>
+            <div class="criteria-item">
+                <strong>3. Personal / Education</strong>
+                Finance tracking, Learning aids. Supports individual tasks.
+            </div>
+            <div class="criteria-item">
+                <strong>4. Communications</strong>
+                VoIP, FTP, Web Browsers. Facilitates global interaction.
+            </div>
         </div>
     </div>
 
     <div class="theory-block">
-        <h3>2. Application Software Types</h3>
-        <p>We classify application software based on its usage:</p>
-        <ul>
-            <li><b>General Purpose:</b> Software that can be used for many different tasks (e.g., Word Processors, Spreadsheets).</li>
-            <li><b>Special Purpose:</b> Software designed for a specific task (e.g., Accounting software, Web Browsers).</li>
-            <li><b>Bespoke (Custom):</b> Software written specifically for one customer's needs.</li>
-        </ul>
+        <h3>4. Bespoke vs. Off-The-Shelf (COTS)</h3>
+        <p>Organizations must choose between buying existing software (COTS) or building their own (Bespoke).</p>
         
-        <div class="interactive-box" style="text-align: left; background: #fff3e0; border-color: #e67e22;">
-            <strong>Example Task:</strong><br>
-            A hospital needs software to manage patient records. 
-            Should they use <em>Generic</em> or <em>Bespoke</em> software? <br>
-            <em>Justification: Bespoke is better because patient data security and specific hospital workflows are critical.</em>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Dimension</th>
+                    <th>Custom (Bespoke)</th>
+                    <th>Off-The-Shelf (COTS)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Cost</b></td>
+                    <td>High initial cost (Development).</td>
+                    <td>Lower initial cost (Shared).</td>
+                </tr>
+                <tr>
+                    <td><b>Suitability</b></td>
+                    <td>Tailored precisely to needs.</td>
+                    <td>General features for mass market.</td>
+                </tr>
+                <tr>
+                    <td><b>Time</b></td>
+                    <td>Slow (Requires development cycle).</td>
+                    <td>Immediate (Ready to install).</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="interactive-box">
+            <strong>Critical Risk:</strong> Bespoke software creates a competitive advantage but risks failure to deliver, resulting in financial loss.
         </div>
     </div>
 
-    <h3>3. Video Explanation</h3>
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/ВАШ_ID_ВИДЕО" allowfullscreen></iframe>
+    <div class="theory-block">
+        <h3><i class="fas fa-file-pdf" style="color: #e74c3c;"></i> Lesson Slides</h3>
+        <div style="height: 500px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc;">
+            <iframe src="../../assets/software_presentation.pdf" width="100%" height="100%" style="border:none;"></iframe>
+        </div>
+        <div style="text-align: right;">
+            <a href="../../assets/software_presentation.pdf" class="btn" download><i class="fas fa-download"></i> Download PDF</a>
+        </div>
     </div>
 
+    <div class="theory-block">
+        <h3>5. Criteria for Software Selection</h3>
+        <p>To ensure a high ROI, evaluate software using these 6 key criteria:</p>
+        <ul style="line-height: 1.8;">
+            <li>✅ <b>Features & Functions:</b> Does it resolve specific pain points?</li>
+            <li>✅ <b>Compatibility:</b> Does it integrate with existing hardware? (Perform a "Fit-Gap Analysis").</li>
+            <li>✅ <b>Cost & Licensing:</b> Consider Total Cost of Ownership (TCO).</li>
+            <li>✅ <b>Vendor Reputation:</b> Is the support infrastructure reliable?</li>
+            <li>✅ <b>Scalability:</b> Can it grow with the company over 3-5 years?</li>
+            <li>✅ <b>Security:</b> Encryption, MFA, and data privacy compliance.</li>
+        </ul>
+    </div>
+<div class="theory-block">
+        <h3>6. Video Explanation</h3>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/watch?v=kStBaNwhWOI" allowfullscreen></iframe>
+        </div>
+    </div>
     <div class="quiz-container">
-        <h3><i class="fas fa-tasks"></i> Self-Check Quiz</h3>
-        
+        <h3><i class="fas fa-tasks"></i> Assessment: Software Choice</h3>
         <form id="quizForm">
             <div class="question">
-                <h4>1. Which software is designed for a specific task?</h4>
+                <h4>1. A startup needs a cheap, immediate solution for writing letters. What should they choose?</h4>
                 <div class="options">
-                    <label><input type="radio" name="q1" value="wrong"> General Purpose</label>
-                    <label><input type="radio" name="q1" value="correct"> Special Purpose</label>
+                    <label><input type="radio" name="q1" value="wrong"> Bespoke Software</label>
+                    <label><input type="radio" name="q1" value="correct"> Off-The-Shelf (COTS)</label>
                     <label><input type="radio" name="q1" value="wrong"> System Software</label>
                 </div>
             </div>
 
             <div class="question">
-                <h4>2. What is the main advantage of Bespoke software?</h4>
+                <h4>2. Which criteria ensures software can handle increased workloads in the future?</h4>
                 <div class="options">
-                    <label><input type="radio" name="q2" value="correct"> It meets the exact needs of the user.</label>
-                    <label><input type="radio" name="q2" value="wrong"> It is cheaper than off-the-shelf software.</label>
-                    <label><input type="radio" name="q2" value="wrong"> It has instant support from a community.</label>
+                    <label><input type="radio" name="q2" value="wrong"> Compatibility</label>
+                    <label><input type="radio" name="q2" value="correct"> Scalability</label>
+                    <label><input type="radio" name="q2" value="wrong"> Vendor Reputation</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h4>3. Which type of software controls the hardware components?</h4>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="correct"> System Software</label>
+                    <label><input type="radio" name="q3" value="wrong"> Application Software</label>
                 </div>
             </div>
             
@@ -121,24 +195,23 @@
 <script>
     function checkQuiz() {
         let score = 0;
-        let total = 2; // Количество вопросов
+        let total = 3;
         let form = document.getElementById('quizForm');
         let resultDiv = document.getElementById('result');
 
-        // Проверка Q1
         if(form.q1.value === 'correct') score++;
-        // Проверка Q2
         if(form.q2.value === 'correct') score++;
+        if(form.q3.value === 'correct') score++;
 
         resultDiv.style.display = 'block';
         if(score === total) {
             resultDiv.style.background = '#d4edda';
             resultDiv.style.color = '#155724';
-            resultDiv.innerHTML = `Great job! ${score}/${total} Correct.`;
+            resultDiv.innerHTML = `Excellent! ${score}/${total} Correct.`;
         } else {
             resultDiv.style.background = '#f8d7da';
             resultDiv.style.color = '#721c24';
-            resultDiv.innerHTML = `You got ${score}/${total}. Try again!`;
+            resultDiv.innerHTML = `You got ${score}/${total}. Review the theory above.`;
         }
     }
 </script>
