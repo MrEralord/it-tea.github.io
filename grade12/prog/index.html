@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 12 Programming Syllabus | IT-Tea</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --term1: #2980b9; 
+            --term2: #8e44ad; 
+            --term3: #d35400; 
+            --term4: #27ae60; 
+            --bg: #f4f7f6;
+            --text: #222;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.5; }
+        
+        header { background: var(--primary); color: white; padding: 15px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; }
+        .back-link { color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        
+        /* Term Sections */
+        .term-section { margin-bottom: 60px; }
+        .term-header { 
+            padding: 15px 20px; border-radius: 8px 8px 0 0; 
+            font-size: 1.4rem; font-weight: bold; color: white; 
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .t1 { background: var(--term1); }
+        .t2 { background: var(--term2); }
+        .t3 { background: var(--term3); }
+        .t4 { background: var(--term4); }
+
+        /* Unit & Topic Styling */
+        .unit-block { background: white; border: 1px solid #ddd; border-top: none; padding: 0; margin-bottom: 0; }
+        .unit-block:last-child { border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        .unit-title { 
+            background: #ecf0f1; color: var(--primary); 
+            padding: 15px 20px; font-weight: 800; font-size: 1.1rem; 
+            border-bottom: 2px solid #ddd; border-top: 1px solid #ddd;
+        }
+
+        /* Table Layout */
+        .syllabus-table { width: 100%; border-collapse: collapse; }
+        .syllabus-table th, .syllabus-table td { padding: 12px 20px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
+        .syllabus-table tr:last-child td { border-bottom: none; }
+        .syllabus-table tr:hover { background-color: #f9fbfc; }
+
+        /* Columns */
+        .col-topic { width: 30%; font-weight: 600; color: #2c3e50; border-right: 1px solid #eee; }
+        .col-code { width: 10%; font-family: 'Consolas', monospace; color: #e67e22; font-weight: bold; }
+        .col-lo { width: 60%; color: #444; }
+
+        /* Links */
+        .topic-link { text-decoration: none; color: inherit; display: block; transition: 0.2s; }
+        .topic-link:hover { color: var(--term1); }
+
+        @media (max-width: 768px) {
+            .syllabus-table, .syllabus-table tbody, .syllabus-table tr, .syllabus-table td { display: block; width: 100%; box-sizing: border-box; }
+            .col-topic { width: 100%; background: #f8f9fa; border-bottom: none; border-right: none; padding-bottom: 5px; }
+            .col-code { display: inline-block; width: auto; padding-right: 5px; padding-bottom: 0; }
+            .col-lo { display: inline-block; width: auto; padding-left: 0; padding-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="back-link"><i class="fas fa-chevron-left"></i> Dashboard</a>
+    <h2 style="margin:0;">Grade 12 Programming (Python)</h2>
+</header>
+
+<div class="container">
+
+    <div class="term-section">
+        <div class="term-header t1">Term 1</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.1A – Python libraries</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic" rowspan="3"><a href="#" class="topic-link">12.1A Module Random</a></td>
+                    <td class="col-code">12.6.1.1</td>
+                    <td class="col-lo">use the functions of the library Random to get a pseudo-random number</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.1.2</td>
+                    <td class="col-lo">determine the function of the library Random for the specified task</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.1.3</td>
+                    <td class="col-lo">identify code snippets that use random sequence generation</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.1A Module PIL</a></td>
+                    <td class="col-code">12.6.2.1</td>
+                    <td class="col-lo">determine standard colors by RGB code</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.2.3</td>
+                    <td class="col-lo">apply graphic primitives to create drawings</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.1A Image processing (PIL)</a></td>
+                    <td class="col-code">12.6.2.2</td>
+                    <td class="col-lo">use commands of module Image in PIL library (load, create, size, save) to manipulate images</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.2.4</td>
+                    <td class="col-lo">create filters for image processing</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.1A Module Wave. Sound processing</a></td>
+                    <td class="col-code">12.6.3.1</td>
+                    <td class="col-lo">use commands of the Wave library to process sound files</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="term-section">
+        <div class="term-header t2">Term 2</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.2A – Game development with PyGame</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic" rowspan="4"><a href="#" class="topic-link">12.2A Module PyGame. Game window and game loop</a></td>
+                    <td class="col-code">12.5.1.1</td>
+                    <td class="col-lo">connect the PyGame library and its modules</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.1.2</td>
+                    <td class="col-lo">create the game window</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.1.3</td>
+                    <td class="col-lo">code the game loop of the application</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.2.1</td>
+                    <td class="col-lo">output graphic primitives to the application window</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.2A Module PyGame. Surfaces</a></td>
+                    <td class="col-code">12.5.2.3</td>
+                    <td class="col-lo">manage the surfaces programmatically</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="3"><a href="#" class="topic-link">12.2A Module PyGame. Animation and Time</a></td>
+                    <td class="col-code">12.5.3.1</td>
+                    <td class="col-lo">code the movement of graphic objects</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.2</td>
+                    <td class="col-lo">control the characters with module Time</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.8</td>
+                    <td class="col-lo">analyse the result of the program execution</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.2A Module PyGame. Events. Mouse events</a></td>
+                    <td class="col-code">12.5.3.3</td>
+                    <td class="col-lo">control characters with the mouse</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="term-section">
+        <div class="term-header t3">Term 3</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.3A – Advanced PyGame</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3A Module PyGame. Keyboard events</a></td>
+                    <td class="col-code">12.5.3.4</td>
+                    <td class="col-lo">control characters with the keyboard</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.3A Module PyGame. Graphic text. Counter of the game</a></td>
+                    <td class="col-code">12.5.2.4</td>
+                    <td class="col-lo">display graphic text on the screen</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.7</td>
+                    <td class="col-lo">implement an algorithm for calculating game results</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.3A Module PyGame. Load images and control images</a></td>
+                    <td class="col-code">12.5.2.2</td>
+                    <td class="col-lo">load ready-made characters for the game</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.5</td>
+                    <td class="col-lo">define parameters (x, y, width, height) of the current state of the object</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="2"><a href="#" class="topic-link">12.3A Module PyGame. Object collisions</a></td>
+                    <td class="col-code">12.5.3.1</td>
+                    <td class="col-lo">code the movement of graphic objects</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.5.3.6</td>
+                    <td class="col-lo">check the relative position of objects on the screen</td>
+                </tr>
+                <tr>
+                    <td class="col-topic"><a href="#" class="topic-link">12.3A Module PyGame. Game development</a></td>
+                    <td class="col-code">12.5.3.9</td>
+                    <td class="col-lo">implement the game in accordance with the scenario</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="term-section">
+        <div class="term-header t4">Term 4</div>
+
+        <div class="unit-block">
+            <div class="unit-title">Unit 12.4A – Chatbots</div>
+            <table class="syllabus-table">
+                <tr>
+                    <td class="col-topic" rowspan="3"><a href="#" class="topic-link">12.4A Introduction to chatbots</a></td>
+                    <td class="col-code">12.6.4.1</td>
+                    <td class="col-lo">define the types of chatbots</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.4.2</td>
+                    <td class="col-lo">argue for the use of chatbots</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.4.3</td>
+                    <td class="col-lo">explain the meaning of the API</td>
+                </tr>
+                <tr>
+                    <td class="col-topic" rowspan="3"><a href="#" class="topic-link">12.4A Chatbot (Telegram)</a></td>
+                    <td class="col-code">12.6.4.4</td>
+                    <td class="col-lo">get API configuration for a chatbot</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.4.5</td>
+                    <td class="col-lo">create a database of answers by keywords</td>
+                </tr>
+                <tr>
+                    <td class="col-code">12.6.4.6</td>
+                    <td class="col-lo">process chat events</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
