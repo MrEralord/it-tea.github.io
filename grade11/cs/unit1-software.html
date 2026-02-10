@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Categories | Grade 11</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Локальные стили для этого урока */
+        .img-container { text-align: center; margin: 20px 0; }
+        .img-container img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-bottom: 30px; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0; }
+
+        .presentation-card {
+            background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;
+        }
+        
+        /* Стили для Квиза */
+        .quiz-container { background: white; padding: 25px; border-radius: 8px; border-top: 5px solid var(--accent); }
+        .question { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .question h4 { margin-top: 0; color: var(--primary); }
+        .options label { display: block; padding: 8px; cursor: pointer; border-radius: 4px; transition: 0.2s; }
+        .options label:hover { background: #f0f0f0; }
+        .quiz-result { font-weight: bold; margin-top: 15px; padding: 10px; border-radius: 4px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="lesson-nav"><a href="index.html">← Back to Grade 11 CS</a></div>
+
+    <div class="lesson-header">
+        <h1>11.1A Software Categories</h1>
+        <div style="text-align: left; display: inline-block; margin-top: 10px;">
+            <span class="stage-badge">LO 11.3.1.2</span> Classify application software.<br>
+            <span class="stage-badge">LO 11.3.1.1</span> Justify the choice of applied software.
+        </div>
+    </div>
+
+    <div class="theory-block">
+        <h3>1. Software Hierarchy</h3>
+        <p>Software is generally divided into two main categories: <b>System Software</b> and <b>Application Software</b>.</p>
+        
+        <div class="img-container">
+            <img src="../../assets/software-diagram.png" alt="Software Classification Diagram">
+            <p style="font-size: 0.8rem; color: #666;">Figure 1: Classification of Software</p>
+        </div>
+    </div>
+
+   <div class="theory-block">
+        <h3><i class="fas fa-file-pdf" style="color: #e74c3c;"></i> Lesson Slides</h3>
+        <p>Review the slides directly here or download them below.</p>
+        
+        <div style="height: 600px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc;">
+            <iframe src="../../assets/software_presentation.pdf" width="100%" height="100%" style="border:none;">
+            </iframe>
+        </div>
+
+        <div style="text-align: right;">
+            <a href="../../assets/software_presentation.pdf" class="btn" download>
+                <i class="fas fa-download"></i> Download PDF
+            </a>
+        </div>
+    </div>
+
+    <div class="theory-block">
+        <h3>2. Application Software Types</h3>
+        <p>We classify application software based on its usage:</p>
+        <ul>
+            <li><b>General Purpose:</b> Software that can be used for many different tasks (e.g., Word Processors, Spreadsheets).</li>
+            <li><b>Special Purpose:</b> Software designed for a specific task (e.g., Accounting software, Web Browsers).</li>
+            <li><b>Bespoke (Custom):</b> Software written specifically for one customer's needs.</li>
+        </ul>
+        
+        <div class="interactive-box" style="text-align: left; background: #fff3e0; border-color: #e67e22;">
+            <strong>Example Task:</strong><br>
+            A hospital needs software to manage patient records. 
+            Should they use <em>Generic</em> or <em>Bespoke</em> software? <br>
+            <em>Justification: Bespoke is better because patient data security and specific hospital workflows are critical.</em>
+        </div>
+    </div>
+
+    <h3>3. Video Explanation</h3>
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/ВАШ_ID_ВИДЕО" allowfullscreen></iframe>
+    </div>
+
+    <div class="quiz-container">
+        <h3><i class="fas fa-tasks"></i> Self-Check Quiz</h3>
+        
+        <form id="quizForm">
+            <div class="question">
+                <h4>1. Which software is designed for a specific task?</h4>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="wrong"> General Purpose</label>
+                    <label><input type="radio" name="q1" value="correct"> Special Purpose</label>
+                    <label><input type="radio" name="q1" value="wrong"> System Software</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h4>2. What is the main advantage of Bespoke software?</h4>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="correct"> It meets the exact needs of the user.</label>
+                    <label><input type="radio" name="q2" value="wrong"> It is cheaper than off-the-shelf software.</label>
+                    <label><input type="radio" name="q2" value="wrong"> It has instant support from a community.</label>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" onclick="checkQuiz()">Check Answers</button>
+            <div id="result" class="quiz-result"></div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    function checkQuiz() {
+        let score = 0;
+        let total = 2; // Количество вопросов
+        let form = document.getElementById('quizForm');
+        let resultDiv = document.getElementById('result');
+
+        // Проверка Q1
+        if(form.q1.value === 'correct') score++;
+        // Проверка Q2
+        if(form.q2.value === 'correct') score++;
+
+        resultDiv.style.display = 'block';
+        if(score === total) {
+            resultDiv.style.background = '#d4edda';
+            resultDiv.style.color = '#155724';
+            resultDiv.innerHTML = `Great job! ${score}/${total} Correct.`;
+        } else {
+            resultDiv.style.background = '#f8d7da';
+            resultDiv.style.color = '#721c24';
+            resultDiv.innerHTML = `You got ${score}/${total}. Try again!`;
+        }
+    }
+</script>
+
+</body>
+</html>
