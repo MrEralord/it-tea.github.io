@@ -1,0 +1,130 @@
+/* style.css — Global Styles for IT-Tea.org */
+
+:root {
+    --primary: #2c3e50;    /* Глубокий синий (NIS Style) */
+    --accent: #e67e22;     /* Оранжевый акцент */
+    --success: #27ae60;    /* Зеленый для практики */
+    --bg: #f4f7f6;         /* Светлый фон */
+    --card-bg: #ffffff;
+    --text: #333333;
+    --border: #e0e0e0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; padding: 0; }
+
+/* --- HEADER --- */
+header {
+    background: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; }
+.logo i { margin-right: 10px; color: var(--accent); }
+
+/* --- LAYOUT --- */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* --- CARDS --- */
+.card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-top: 4px solid transparent;
+}
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+/* Цветовые коды предметов */
+.card-cs { border-top-color: #3498db; }
+.card-prog { border-top-color: #2ecc71; }
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.btn:hover { background: #34495e; }
+
+/* --- LESSON PAGE STYLES --- */
+.lesson-nav { margin-bottom: 20px; }
+.lesson-nav a { color: var(--primary); font-weight: bold; }
+
+.lesson-header {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 5px solid var(--accent);
+}
+
+.stage-badge {
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #777;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.theory-block {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary);
+}
+
+.code-block {
+    background: #2d3436;
+    color: #dfe6e9;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Consolas', monospace;
+    overflow-x: auto;
+}
+
+.interactive-box {
+    background: #e8f5e9;
+    border: 2px dashed var(--success);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
