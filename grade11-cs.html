@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 11 CS Curriculum | IT-Tea</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #2980b9; --bg: #f4f6f7; --text: #2c3e50; --success: #27ae60; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+        
+        /* Header */
+        header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+        .back-btn { float: left; color: white; text-decoration: none; font-weight: bold; }
+        
+        /* Container */
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        
+        /* Plan Table Styling */
+        .plan-card { background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 30px; }
+        .term-header { background: var(--primary); color: white; padding: 15px 25px; font-size: 1.2rem; font-weight: bold; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 15px 20px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #ecf0f1; font-weight: 600; color: #7f8c8d; font-size: 0.9rem; text-transform: uppercase; }
+        tr:hover { background: #f9f9f9; }
+        
+        /* Badges */
+        .lo-code { font-family: monospace; background: #e8f4fd; color: var(--primary); padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .status-ready { color: var(--success); font-weight: bold; }
+        .status-soon { color: #95a5a6; font-style: italic; }
+        
+        /* Link styling */
+        .topic-link { text-decoration: none; color: var(--text); font-weight: 500; display: block; }
+        .topic-link:hover { color: var(--primary); text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            th:nth-child(3), td:nth-child(3) { display: none; } /* Hide Status on mobile */
+            .back-btn { float: none; display: block; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="back-btn">← Back to Dashboard</a>
+    <h1>Grade 11: Computer Science</h1>
+    <p>Yearly Plan & Resources (Cambridge AS Level)</p>
+</header>
+
+<div class="container">
+
+    <div class="plan-card">
+        <div class="term-header">Term 1: Information Representation & Security</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">LO Code</th>
+                    <th width="65%">Topic & Learning Objective</th>
+                    <th width="20%">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="lo-code">11.1.1</span></td>
+                    <td>
+                        <a href="#" class="topic-link">Data Representation Basics</a>
+                        <small>Binary, Hexadecimal, ASCII vs Unicode</small>
+                    </td>
+                    <td><span class="status-ready"><i class="fas fa-check"></i> Ready</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lo-code">11.1.2.1</span></td>
+                    <td>
+                        <a href="#" class="topic-link">Security, Privacy & Integrity</a>
+                        <small>Difference between key terms and risks</small>
+                    </td>
+                    <td><span class="status-ready"><i class="fas fa-check"></i> Ready</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lo-code">11.1.2.3</span></td>
+                    <td>
+                        <a href="#" class="topic-link">Data Protection Measures</a>
+                        <small>Backups, Disk Mirroring, Encryption</small>
+                    </td>
+                    <td><span class="status-soon">Coming Soon</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="plan-card">
+        <div class="term-header" style="background: #8e44ad;">Term 2: Communication & Internet</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">LO Code</th>
+                    <th>Topic & Learning Objective</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="lo-code">11.2.1.1</span></td>
+                    <td>System Life Cycle (Analysis, Design, Implementation)</td>
+                    <td><span class="status-soon">Coming Soon</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lo-code">11.2.1.2</span></td>
+                    <td>Waterfall vs Agile Models</td>
+                    <td><span class="status-soon">Coming Soon</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lo-code">11.1.2.6</span></td>
+                    <td>Blockchain Technology</td>
+                    <td><span class="status-soon">Coming Soon</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="plan-card">
+        <div class="term-header" style="background: #e67e22;">Term 3: Hardware & Architecture</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">LO Code</th>
+                    <th>Topic & Learning Objective</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="lo-code">11.3.1</span></td>
+                    <td>Processor Fundamentals (Von Neumann)</td>
+                    <td><span class="status-soon">Spring 2026</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lo-code">11.3.2</span></td>
+                    <td>Assembly Language (LMC)</td>
+                    <td><span class="status-soon">Spring 2026</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+
+</body>
+</html>
