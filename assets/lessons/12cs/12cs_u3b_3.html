@@ -1,32 +1,244 @@
-"u3b-3": {
-        title: "Binary Arithmetic: Addition & Multiplication",
-        los: ["12.1.1.3 Perform arithmetic operations", "12.1.1.5 Handle overflow and bit-depth"],
-        
-        // Поля пустые (блоки скроются)
-        image: "", 
-        video: "", 
-        slides: "",
+<div class="theory-block">
+    <span class="stage-badge">Context</span>
+    <h3>1. The Strategic Role of Binary Arithmetic</h3>
+    <p>
+        In the landscape of modern computer science, binary arithmetic serves as the indispensable logic governing the <b>Central Processing Unit (CPU)</b>. These operations are far more than abstract mathematical exercises; they represent the mechanical "gears" of a digital system.
+    </p>
+    
+    <div class="interactive-box">
+        <strong><i class="fas fa-tachometer-alt"></i> The Odometer Analogy:</strong>
+        Consider a car’s odometer: when a counter at <b>000,000</b> moves backward, it wraps around to <b>999,999</b>. Binary logic operates on similar principles of circularity and finite bit-depth.
+    </div>
 
-        // Ссылка на полный материал
-        theoryUrl: "assets/lessons/12cs/12cs_u3b_3.html",
-        
-        // Cambridge Self-Check
-        quiz: [
-            { 
-                q: "In binary addition, what is the result of 1 + 1 + 1?", 
-                a: "<b>1 with a Carry of 1</b>." 
-            },
-            { 
-                q: "What is an 'Overflow Error' in unsigned 8-bit addition?", 
-                a: "When a carry is generated into the <b>9th bit</b> position." 
-            },
-            { 
-                q: "Why is binary multiplication computationally intensive for a CPU?", 
-                a: "It requires a distinct cycle of <b>shifting and adding</b> for every bit position." 
-            },
-            {
-                q: "In Two's Complement subtraction, what do you do with the final carry-out?",
-                a: "It is <b>ignored</b>."
-            }
-        ]
-    },
+    <p>
+        Mastering the mechanics of addition and multiplication is the essential prerequisite for navigating complex data representations, such as <b>Two’s Complement</b>. By bridging the gap between simple unsigned counts and the signed representations required for high-level data processing, we gain insight into how a system essentially "thinks" at the hardware level.
+    </p>
+</div>
+
+<div class="theory-block">
+    <h3>2. The Mechanics of Binary Addition</h3>
+    <p>
+        The binary (base-2) system shares a core functional logic with the denary (base-10) system: the necessity of <b>"carrying"</b> values. When the sum of a column reaches or exceeds 2, a "carry" bit is shifted to the subsequent power of two.
+    </p>
+
+    <h4>Fundamental Rules of Binary Addition</h4>
+    <div class="table-wrapper">
+        <table class="comparison-table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Result</th>
+                    <th>Carry Outcome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0 + 0</td><td>0</td><td>No carry</td></tr>
+                <tr><td>0 + 1</td><td>1</td><td>No carry</td></tr>
+                <tr><td>1 + 0</td><td>1</td><td>No carry</td></tr>
+                <tr><td>1 + 1</td><td>0</td><td><b>Carry 1</b></td></tr>
+                <tr style="background-color: #fff3cd;">
+                    <td><b>1 + 1 + 1</b></td>
+                    <td><b>1</b></td>
+                    <td><b>Carry 1</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>3. Worked Examples: Binary Addition</h3>
+    <p>Maintaining precise vertical alignment and a dedicated <b>"Carry Row"</b> is vital for accuracy, particularly as bit-depth increases.</p>
+
+    <h4>Example 1: Simple Addition (Minimal Carries)</h4>
+    <p>Summing 4-bit unsigned values 1010<sub>2</sub> (10) and 0101<sub>2</sub> (5).</p>
+    <div style="font-family: 'Courier New', monospace; background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; line-height: 1.4; white-space: pre; overflow-x: auto;">
+  Carry: 0000
+         1010  (10)
+       + 0101  (5)
+       ------
+  Sum:   1111  (15)
+    </div>
+
+    <h4>Example 2: Addition involving a "Chain" of Carries</h4>
+    <p>Summing 4-bit unsigned values 1101<sub>2</sub> (13) and 0111<sub>2</sub> (7).</p>
+    <div style="font-family: 'Courier New', monospace; background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; line-height: 1.4; white-space: pre; overflow-x: auto;">
+  Carry: <span style="color: #f1c40f;">1111</span>
+         1101  (13)
+       + 0111  (7)
+       ------
+  Sum:  10100  (20)
+    </div>
+
+    <h4>Example 3: 8-bit Addition (Two’s Complement Context)</h4>
+    <p>Operation: 1011 0011<sub>2</sub> + 1001 0010<sub>2</sub>.</p>
+    <div style="font-family: 'Courier New', monospace; background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; line-height: 1.4; white-space: pre; overflow-x: auto;">
+  Carry: <span style="color: #e74c3c;">1</span>001 0011 0
+          1011 0011
+        + 1001 0010
+        -----------
+  Sum: <span style="color: #e74c3c;">(1)</span>0100 0101
+    </div>
+    <div class="interactive-box">
+        <strong><i class="fas fa-exclamation-circle"></i> Note on the 9th Bit:</strong>
+        In an 8-bit system, the result <b>(1)</b> is the "carry-out".
+        <ul>
+            <li><b>Two's Complement:</b> This carry is IGNORED to provide the correct answer.</li>
+            <li><b>Unsigned Addition:</b> This indicates an <b>Overflow Error</b>.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>4. Binary Multiplication: Logic and Partial Products</h3>
+    <p>
+        Binary multiplication is strategically executed as a sequence of <b>"shift and add"</b> operations. 
+        It is conceptually simpler for humans (no multiplication tables beyond 1×1), but computationally intensive for a CPU.
+    </p>
+    <p>
+        While a human sees simplicity, the hardware must perform a distinct cycle of shifting and adding for every bit position in the multiplier. 
+        Every shift to the left effectively multiplies the value by a power of two.
+    </p>
+</div>
+
+<div class="theory-block">
+    <h3>5. Worked Examples: Binary Multiplication</h3>
+    
+    <h4>Example 1: 4-bit by 2-bit (1011 × 11)</h4>
+    <div style="font-family: 'Courier New', monospace; background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; line-height: 1.4; white-space: pre; overflow-x: auto; border: 1px solid #ffeeba;">
+          1011  (Multiplicand)
+        x   11  (Multiplier)
+        ------
+          1011  (Partial Product 1: 1011 x 1)
+       + 10110  (Partial Product 2: 1011 x 1, shifted)
+       -------
+        100001<sub>2</sub> (Summation)
+    </div>
+
+    <h4>Example 2: 4-bit by 4-bit (1101 × 1011)</h4>
+    <div style="font-family: 'Courier New', monospace; background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; line-height: 1.4; white-space: pre; overflow-x: auto; border: 1px solid #ffeeba;">
+            1101
+          x 1011
+          ------
+            1101  (1101 x 1)
+           11010  (1101 x 1, shifted)
+          000000  (1101 x 0, shifted)
+       + 1101000  (1101 x 1, shifted)
+       ---------
+        10001111<sub>2</sub> (Summation)
+    </div>
+
+    <h4>Example 3: 8-bit "Shortint" Boundaries</h4>
+    <p>Multiply 1111<sub>2</sub> (15) by 1000<sub>2</sub> (8).</p>
+    <div style="font-family: 'Courier New', monospace; background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; line-height: 1.4; white-space: pre; overflow-x: auto; border: 1px solid #ffeeba;">
+            1111
+          x 1000
+          ------
+            0000
+           00000
+          000000
+       + 1111000
+       ---------
+         1111000<sub>2</sub> (Result is 120)
+    </div>
+    <p><i>Note: This 7-bit result remains within the capacity of an 8-bit register.</i></p>
+</div>
+
+<div class="theory-block" style="border-left: 5px solid #c0392b;">
+    <h3>6. Identifying Common Pitfalls: Overflow & Bit-Depth</h3>
+    <p>In high-stakes examinations, accuracy is often compromised by a failure to account for bit-depth.</p>
+    
+    <h4>The Phenomenon of Overflow</h4>
+    <p>Overflow occurs when a calculation produces a result that exceeds the allocated bit-depth (e.g., an 8-bit register attempting to store a 9-bit result).</p>
+    
+    <ul>
+        <li><b>In Unsigned Addition:</b> A carry-out into the 9th bit is an "Overflow Error".</li>
+        <li><b>In Two's Complement:</b> The source dictates that the final carry-out is <b>ignored</b>.</li>
+        <li><b>In Signed 8-bit (Shortint):</b> The MSB is the sign bit. If adding two positive numbers results in a '1' in the MSB, an overflow has occurred (result incorrectly interpreted as negative).</li>
+    </ul>
+
+    <div class="interactive-box">
+        <strong><i class="fas fa-check-double"></i> Pro-Tips for Academic Success:</strong>
+        <ul>
+            <li><b>Columnar Discipline:</b> Use fixed-width columns.</li>
+            <li><b>The Visible Carry:</b> Always write the Carry Row. Mental carries are the cause of failure.</li>
+            <li><b>Sign-Bit Check:</b> Verify if the result fits within [-128..127].</li>
+        </ul>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>7. Graded Practice Tasks</h3>
+    <p>Test your understanding. Click to reveal the solutions.</p>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            Level 1: Knowledge (Addition & Multiplication)
+            <i class="fas fa-chevron-down" style="float:right"></i>
+        </div>
+        <div class="faq-answer">
+            <p><b>1. Add 1101 + 0011:</b></p>
+            <pre style="font-family: monospace; font-weight: bold;">
+  1111 (Carry)
+  1101
++ 0011
+------
+ 10000 (16)</pre>
+            <p><b>2. Multiply 1010 by 10:</b></p>
+            <pre style="font-family: monospace; font-weight: bold;">
+   1010
+ x   10
+ ------
+   0000
+  10100
+ ------
+  10100 (20)</pre>
+        </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            Level 2: Application (Subtraction via Two's Complement)
+            <i class="fas fa-chevron-down" style="float:right"></i>
+        </div>
+        <div class="faq-answer">
+            <p><b>Task:</b> Perform 17 - 14 (8-bit)</p>
+            <ol>
+                <li><b>+14:</b> 00001110</li>
+                <li><b>Convert to -14:</b> Flip (11110001) + 1 = <b>11110010</b></li>
+                <li><b>Add to 17 (00010001):</b></li>
+            </ol>
+            <pre style="font-family: monospace; font-weight: bold;">
+  1111 0000
+   00010001 (17)
+ + 11110010 (-14)
+ ----------
+(1)00000011</pre>
+            <p><b>Result:</b> 00000011 (3). The carry-out (1) is ignored in Two's Complement.</p>
+        </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            Level 3: Challenge (Evaluation)
+            <i class="fas fa-chevron-down" style="float:right"></i>
+        </div>
+        <div class="faq-answer">
+            <p><b>Task:</b> Calculate 1111<sub>2</sub> × 1111<sub>2</sub> (15 × 15)</p>
+            <p><b>Binary Product:</b> 11100001<sub>2</sub></p>
+            <p><b>Denary:</b> 225</p>
+            <p><b>Fit in 8-bit Shortint?</b> <span style="color:red; font-weight:bold;">NO.</span></p>
+            <p><b>Justification:</b> An 8-bit signed register (Shortint) has a range of -128 to +127. The value 225 exceeds 127. In a signed register, 11100001 would be interpreted as a negative number (-31), which is a massive overflow error.</p>
+        </div>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>8. Unit Summary</h3>
+    <ul>
+        <li><b>Addition:</b> Governed by carry propagation.</li>
+        <li><b>Multiplication:</b> Constructed from iterative partial products.</li>
+        <li><b>Two's Complement:</b> Allows subtraction via "flip and add 1".</li>
+        <li><b>Overflow:</b> Understanding when to ignore a carry and when to flag an error is critical.</li>
+    </ul>
+</div>
