@@ -1,35 +1,29 @@
-// loader.js - Основной движок сайта
-
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. Считываем параметры из адресной строки
-    // Пример: lesson.html?subject=cs12&id=u3b-1
+    // 1. Получаем параметры URL
     const params = new URLSearchParams(window.location.search);
     const subject = params.get('subject'); 
     const lessonId = params.get('id');
 
     let currentDB = null;
-    let subjectFolder = ""; // Папка, где лежат PDF (11cs, 12prog и т.д.)
 
-    // 2. Определяем, какую базу данных открыть
+    // 2. Выбираем базу данных
     switch(subject) {
-        case 'cs11':   currentDB = DB_CS11;   subjectFolder = "11cs";   break;
-        case 'prog11': currentDB = DB_PROG11; subjectFolder = "11prog"; break;
-        case 'cs12':   currentDB = DB_CS12;   subjectFolder = "12cs";   break;
-        case 'prog12': currentDB = DB_PROG12; subjectFolder = "12prog"; break;
-        default: console.error("Subject not found");
+        case 'cs11':   currentDB = DB_CS11;   break;
+        case 'prog11': currentDB = DB_PROG11; break;
+        case 'cs12':   currentDB = DB_CS12;   break;
+        case 'prog12': currentDB = DB_PROG12; break;
+        default: console.error("Subject database not found");
     }
 
-    // 3. Загружаем контент
+    // 3. Загружаем данные урока
     if (currentDB && currentDB[lessonId]) {
         const data = currentDB[lessonId];
         
-        // --- Заголовки ---
-        document.title = data.title + " | IT-Tea";
+        // --- Заголовки и Цели ---
+        document.title = data.title;
         document.getElementById('lessonTitle').innerText = data.title;
         
-        // --- Цели обучения (LOs) ---
-        // Если это массив - превращаем в бейджи, если строка - оставляем текстом
         if (Array.isArray(data.los)) {
             document.getElementById('lessonLOs').innerHTML = data.los.map(lo => 
                 `<span class="stage-badge">${lo}</span>`
@@ -38,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('lessonLOs').innerHTML = data.los;
         }
 
-        // --- Картинка (Image) ---
+        // --- Картинка ---
         const imgBlock = document.getElementById('imgBlock');
         if (data.image) {
             document.getElementById('lessonImage').src = data.image;
@@ -47,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
             imgBlock.classList.add('hidden');
         }
 
-        // --- Видео (Video) ---
+        // --- Видео (YouTube) ---
         const videoBlock = document.getElementById('videoBlock');
         if (data.video) {
             document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${data.video}`;
@@ -56,25 +50,39 @@ document.addEventListener("DOMContentLoaded", function() {
             videoBlock.classList.add('hidden');
         }
 
-        // --- PDF Файлы (Theory & Slides) ---
-        // Пути формируются автоматически или берутся из базы
-        const theoryPath = data.theory;
-        const slidesPath = data.slides;
+        // --- ТЕОРИЯ (Загрузка внешнего HTML файла) ---
+        const theoryContainer = document.getElementById('theoryContainer');
+        
+        if (data.theoryUrl) {
+            theoryContainer.classList.remove('hidden');
+            // Индикатор загрузки
+            theoryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:#777;"><i class="fas fa-spinner fa-spin"></i> Loading Theory...</div>';
 
-        // Theory Tab
-        if (theoryPath) {
-            document.getElementById('theoryFrame').src = theoryPath;
-            document.getElementById('theoryDownload').href = theoryPath;
+            fetch(data.theoryUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("File not found");
+                    return response.text();
+                })
+                .then(html => {
+                    // Вставляем полученный HTML внутрь контейнера
+                    theoryContainer.innerHTML = html;
+                })
+                .catch(err => {
+                    theoryContainer.innerHTML = `<p style="color:red; text-align:center;">Error loading theory: ${err.message}</p>`;
+                });
         } else {
-            document.getElementById('theory').innerHTML = "<p class='center-text'>No theory material available.</p>";
+            // Если файла нет в базе - скрываем блок
+            theoryContainer.classList.add('hidden');
         }
 
-        // Slides Tab
-        if (slidesPath) {
-            document.getElementById('slidesFrame').src = slidesPath;
-            document.getElementById('slidesDownload').href = slidesPath;
+        // --- Презентация (PDF) ---
+        const slidesBlock = document.getElementById('slidesBlock');
+        if (data.slides) {
+            document.getElementById('slidesFrame').src = data.slides;
+            document.getElementById('slidesDownload').href = data.slides;
+            slidesBlock.classList.remove('hidden');
         } else {
-            document.getElementById('slides').innerHTML = "<p class='center-text'>No presentation available.</p>";
+            slidesBlock.classList.add('hidden');
         }
 
         // --- Тест (Quiz) ---
@@ -97,12 +105,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     } else {
-        // Если урок не найден
+        // Ошибка 404
         document.querySelector('.container').innerHTML = `
             <div style="text-align:center; margin-top:50px;">
-                <h1>404 <i class="fas fa-robot"></i></h1>
-                <p>Lesson not found or database missing.</p>
-                <a href="index.html" class="btn">Go Home</a>
+                <h1>Lesson Not Found</h1>
+                <p>Please check the URL or the database file.</p>
+                <a href="index.html" class="btn">Back to Dashboard</a>
             </div>
         `;
     }
