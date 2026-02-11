@@ -68,5 +68,40 @@ const DB_CS12 = {
                 a: "It eliminates the 'double zero' problem and simplifies arithmetic logic." 
             }
         ]
+    },
+    "u3b-4": {
+        title: "Fixed Point & Floating Point",
+        los: [
+            "12.1.1.6 Fixed Point representation",
+            "12.1.1.7 Floating Point (Normalization, Precision vs Range)"
+        ],
+        
+        // Поля пустые (автоматически скроются)
+        image: "", 
+        video: "", 
+        slides: "",
+
+        // Ссылка на обновленный файл
+        theoryUrl: "assets/lessons/12cs/12cs_u3b_4.html",
+        
+        // Cambridge A-Level style Quiz
+        quiz: [
+            { 
+                q: "Why do we normalize floating point numbers?", 
+                a: "To ensure a <b>unique representation</b> and maximize <b>precision</b> (save bits)." 
+            },
+            { 
+                q: "A signed binary number starts with <b>1.110...</b>. Is it normalized?", 
+                a: "<b>NO.</b> A normalized negative number must start with <b>1.0</b>." 
+            },
+            { 
+                q: "What happens if you increase the Exponent size but decrease the Mantissa?", 
+                a: "<b>Range increases</b>, but Precision decreases." 
+            },
+            { 
+                q: "Convert <b>-1.5</b> to a normalized floating point (Mantissa: 6 bits, Exp: 4 bits).", 
+                a: "<b>101000 0001</b>.<br>(1.5 is 01.1 -> -1.5 is 10.1 -> Norm: 1.01 (Exp +1))." 
+            }
+        ]
     }
 };
