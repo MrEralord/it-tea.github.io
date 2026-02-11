@@ -1,167 +1,275 @@
 <div class="theory-block">
-    <span class="stage-badge">Context</span>
-    <h3>1. The Problem of Scale</h3>
+    <span class="stage-badge">Learning Objective</span>
+    <h3>Two’s Complement Representation</h3>
+    <p><b>12.1.1.4 — Represent positive and negative numbers in Two’s Complement.</b></p>
+
     <p>
-        Computers need to store numbers as small as an atom's width (0.000000001) and as large as the distance to a star (9,000,000,000). 
-        <b>Fixed Point</b> systems fail here because the decimal point is "stuck". To solve this, we use <b>Floating Point</b>.
+        Modern computer systems must process both positive and negative integers. 
+        While unsigned binary allows only non-negative values, real-world computation 
+        requires an efficient signed representation. The universally adopted method 
+        in modern processors is <b>Two’s Complement</b>.
     </p>
+
     <div class="interactive-box">
-        <strong><i class="fas fa-lightbulb"></i> Scientific Notation Analogy:</strong>
-        <p>In math, we write <b>-0.0034</b> as <b>-3.4 × 10<sup>-3</sup></b>.</p>
-        <p>In binary, we do the same: <b>Mantissa × 2<sup>Exponent</sup></b>.</p>
+        <strong><i class="fas fa-microchip"></i> Why It Matters:</strong>
+        Every arithmetic operation performed by the CPU’s Arithmetic Logic Unit (ALU) 
+        relies on fixed-width binary registers. Two’s Complement enables subtraction 
+        using addition circuitry, simplifying hardware design.
     </div>
 </div>
 
 <div class="theory-block">
-    <span class="stage-badge">LO 12.1.1.6</span>
-    <h3>2. Fixed Point Representation</h3>
-    <p>The binary point is fixed at a specific bit position. Bits to the right represent negative powers of 2 (fractions).</p>
-
-    <div class="table-wrapper">
-        <table class="comparison-table" style="text-align: center;">
-            <thead>
-                <tr style="background: #2c3e50; color: white;">
-                    <th>4</th>
-                    <th>2</th>
-                    <th>1</th>
-                    <th style="background: #e74c3c;">.</th>
-                    <th>0.5 (2<sup>-1</sup>)</th>
-                    <th>0.25 (2<sup>-2</sup>)</th>
-                    <th>0.125 (2<sup>-3</sup>)</th>
-                    <th>0.0625 (2<sup>-4</sup>)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td style="font-weight:bold; color:#e74c3c;">.</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <p><b>Value:</b> 4 + 1 + 0.5 + 0.25 = <b>5.75</b></p>
-</div>
-
-<div class="theory-block">
-    <span class="stage-badge">LO 12.1.1.7</span>
-    <h3>3. Floating Point Anatomy</h3>
-    <p>A floating point number is stored in two parts using <b>Two's Complement</b>.</p>
-
-    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-        <div style="flex: 2; background: #d6eaf8; padding: 15px; border: 2px solid #3498db; border-radius: 8px; text-align: center;">
-            <h4 style="margin:0; color: #2980b9;">MANTISSA</h4>
-            <p style="font-size: 0.9rem;">Determines the <b>Value</b> & <b>Sign</b>.<br>Usually 8-16 bits.</p>
-        </div>
-        <div style="flex: 1; background: #fadbd8; padding: 15px; border: 2px solid #e74c3c; border-radius: 8px; text-align: center;">
-            <h4 style="margin:0; color: #c0392b;">EXPONENT</h4>
-            <p style="font-size: 0.9rem;">Determines the <b>Range</b>.<br>Moves the binary point.</p>
-        </div>
-    </div>
-</div>
-
-<div class="theory-block">
-    <h3>4. Normalization (The Golden Rules)</h3>
+    <h3>1. The Limitation of Unsigned Binary</h3>
     <p>
-        Normalization ensures unique representation and maximum precision by removing leading zeros (or leading ones in negative numbers).
+        In an 8-bit unsigned system, the range is determined by the formula:
+        <b>2<sup>n</sup> − 1</b>.
     </p>
-
-    <div class="interactive-box" style="border-left: 5px solid #27ae60;">
-        <strong><i class="fas fa-check-circle"></i> Valid Patterns:</strong>
-        <p>A normalized number MUST start with different bits:</p>
-        <ul>
-            <li>Positive: <b>0.1xxxx...</b></li>
-            <li>Negative: <b>1.0xxxx...</b></li>
-        </ul>
-    </div>
-    
-    <div style="background: #fdf2f2; padding: 15px; border-radius: 6px; margin-top: 10px;">
-        <b>Invalid Examples (Not Normalized):</b>
-        <ul>
-            <li><span style="color:red">0.0</span>101... (Wasted space, shift left!)</li>
-            <li><span style="color:red">1.1</span>010... (Wasted space, shift left!)</li>
-        </ul>
-    </div>
-</div>
-
-<div class="theory-block">
-    <h3>5. Master Class: Converting Negative Numbers</h3>
-    <p><b>Task:</b> Convert <b>-3.75</b> to Floating Point (8-bit Mantissa, 4-bit Exponent).</p>
-
-    <h4>Step 1: Fixed Point Binary (Positive)</h4>
-    <p>3 = 11, 0.75 = .11 → <b>011.110</b> (Added leading zero)</p>
-
-    <h4>Step 2: Two's Complement (Flip & Add 1)</h4>
-    <p>Flip: 100.001<br>Add 1: <b>100.010</b> (This is -3.75 in fixed point)</p>
-
-    <h4>Step 3: Normalize (Shift to get 1.0)</h4>
-    
-    <div style="font-family: monospace; background: #eee; padding: 10px; border-left: 4px solid #333;">
-        Current:  100.010<br>
-        Shift 1:  10.0010<br>
-        Shift 2:  1.00010 (Stop! Starts with 1.0)
-    </div>
-    <p>We shifted <b>2 places left</b>. So Exponent = <b>+2</b>.</p>
-
-    <h4>Step 4: Exponent to Binary</h4>
-    <p>+2 = <b>0010</b></p>
-
-    <h4>Step 5: Assemble</h4>
-    <div class="table-wrapper">
-        <table class="comparison-table" style="text-align: center;">
-            <thead>
-                <tr><th colspan="8">Mantissa (8 bits)</th><th colspan="4">Exponent (4 bits)</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><b>1</b></td><td><b>0</b></td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td>
-                    <td style="background:#eee;">0</td><td style="background:#eee;">0</td><td style="background:#eee;">1</td><td style="background:#eee;">0</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="theory-block" style="border-left: 5px solid #8e44ad;">
-    <h3>6. The "Slider" Trade-off: Precision vs Range</h3>
-    <p>If you have a fixed number of bits (e.g., 16), you have to choose how to split them.</p>
 
     <div class="table-wrapper">
         <table class="comparison-table">
             <thead>
                 <tr>
-                    <th>Change</th>
-                    <th>Result on Range</th>
-                    <th>Result on Precision</th>
+                    <th>Bits</th>
+                    <th>Minimum</th>
+                    <th>Maximum</th>
+                    <th>Range</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><b>More bits for Mantissa</b></td>
-                    <td>Decreases</td>
-                    <td><span style="color: green; font-weight: bold;">Increases</span> (More accuracy)</td>
-                </tr>
-                <tr>
-                    <td><b>More bits for Exponent</b></td>
-                    <td><span style="color: green; font-weight: bold;">Increases</span> (Larger numbers)</td>
-                    <td>Decreases</td>
+                    <td>8-bit Unsigned</td>
+                    <td>0</td>
+                    <td>255</td>
+                    <td>0 → 255</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <p><b>Analogy:</b> A camera lens. You can Zoom In (Precision) or Zoom Out (Range), but not both perfectly at once.</p>
+
+    <p>
+        There is no representation for negative values. Therefore, a new encoding system is required.
+    </p>
 </div>
 
 <div class="theory-block">
-    <h3>7. Types of Errors</h3>
+    <h3>2. The Structure of Two’s Complement</h3>
+
+    <p>
+        In Two’s Complement:
+    </p>
     <ul>
-        <li><b>Overflow:</b> Number is too large for the Exponent.</li>
-        <li><b>Underflow:</b> Number is too small (too close to zero) for the Exponent.</li>
-        <li><b>Rounding Error:</b> Some decimals (like 0.1) cannot be represented exactly in binary, leading to infinite recurring fractions (0.000110011...).</li>
+        <li>The <b>Most Significant Bit (MSB)</b> acts as the sign bit.</li>
+        <li>0 = positive number</li>
+        <li>1 = negative number</li>
+        <li>Negative values are created by inverting all bits and adding 1.</li>
     </ul>
+
+    <div class="interactive-box">
+        <strong>Mathematical Range Formula:</strong><br>
+        −2<sup>n−1</sup> to +2<sup>n−1</sup> − 1
+    </div>
+
+    <p>
+        For an 8-bit system:
+        <b>−128 to +127</b>
+    </p>
+</div>
+
+<div class="theory-block">
+    <h3>3. Representing Positive Numbers</h3>
+    <p>
+        Positive numbers are identical to unsigned representation 
+        as long as the MSB remains 0.
+    </p>
+
+    <div class="interactive-box">
+        Example: +18<sub>10</sub> = 00010010<sub>2</sub>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>4. Representing Negative Numbers (Step-by-Step Method)</h3>
+
+    <h4>Example: Represent −18 in 8-bit</h4>
+
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Operation</th>
+                    <th>Binary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Write +18</td>
+                    <td>00010010</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Invert bits</td>
+                    <td>11101101</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Add 1</td>
+                    <td><b>11101110</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="interactive-box">
+        Final Answer: −18 = <b>11101110<sub>2</sub></b>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>5. Why Two’s Complement Works (Modular Arithmetic)</h3>
+
+    <p>
+        Two’s Complement operates under modulo 2<sup>n</sup> arithmetic.
+        In an 8-bit system:
+    </p>
+
+    <div class="interactive-box">
+        2<sup>8</sup> = 256<br>
+        To represent −18:<br>
+        256 − 18 = 238<br>
+        238<sub>10</sub> = 11101110<sub>2</sub>
+    </div>
+
+    <p>
+        Thus, negative numbers are stored as: <b>2<sup>n</sup> − |value|</b>.
+    </p>
+</div>
+
+<div class="theory-block">
+    <h3>6. Converting Back to Decimal</h3>
+
+    <h4>Example 1: 11111111<sub>2</sub></h4>
+    <p>MSB = 1 → negative</p>
+
+    <div class="interactive-box">
+        Invert → 00000000<br>
+        Add 1 → 00000001 = 1<br>
+        Final Answer: −1
+    </div>
+
+    <h4>Example 2: 10000000<sub>2</sub></h4>
+    <div class="interactive-box">
+        Invert → 01111111<br>
+        Add 1 → 10000000 = 128<br>
+        Final Answer: −128
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>7. Subtraction Using Two’s Complement</h3>
+
+    <h4>Example: 15 − 9</h4>
+
+    <pre style="background:#f4f4f4;padding:15px;border-radius:8px;">
+  00001111
++ 11110111
+-----------
+1 00000110
+    </pre>
+
+    <div class="interactive-box">
+        Ignore carry-out → Result: 00000110 = 6
+    </div>
+
+    <p>
+        Subtraction becomes addition of a negative number. 
+        No separate subtraction hardware is required.
+    </p>
+</div>
+
+<div class="theory-block">
+    <h3>8. Overflow Detection</h3>
+
+    <p>
+        Overflow occurs when:
+    </p>
+
+    <ul>
+        <li>Two positive numbers produce a negative result.</li>
+        <li>Two negative numbers produce a positive result.</li>
+    </ul>
+
+    <h4>Example: 127 + 1</h4>
+
+    <pre style="background:#f4f4f4;padding:15px;border-radius:8px;">
+  01111111
++ 00000001
+-----------
+  10000000
+    </pre>
+
+    <div class="interactive-box">
+        Result becomes −128 → Overflow occurred.
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>9. Common Mistakes</h3>
+    <ul>
+        <li>Forgetting to add 1 after inversion.</li>
+        <li>Not fixing bit-width (must remain 8-bit, 16-bit, etc.).</li>
+        <li>Using carry-out as overflow indicator incorrectly.</li>
+        <li>Confusing One’s Complement with Two’s Complement.</li>
+        <li>Ignoring range limits.</li>
+    </ul>
+</div>
+
+<div class="theory-block" style="border-left: 5px solid #27ae60;">
+    <h3>10. Practice & Knowledge Check</h3>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            1. Convert −5 to 8-bit Two’s Complement.
+        </div>
+        <div class="faq-answer">
+            11111011
+        </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            2. Convert 11111010₂ to decimal.
+        </div>
+        <div class="faq-answer">
+            −6
+        </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            3. What is the range of a 6-bit Two’s Complement system?
+        </div>
+        <div class="faq-answer">
+            −32 to +31
+        </div>
+    </div>
+</div>
+
+<div class="theory-block" style="border-left: 5px solid #9b59b6;">
+    <h3>11. Unit Summary</h3>
+
+    <ul>
+        <li>Two’s Complement is the standard signed binary system.</li>
+        <li>Range: −2<sup>n−1</sup> to +2<sup>n−1</sup> − 1.</li>
+        <li>Negative numbers = invert bits + add 1.</li>
+        <li>Only one representation of zero exists.</li>
+        <li>Subtraction becomes addition.</li>
+        <li>Overflow depends on sign analysis, not carry-out.</li>
+    </ul>
+
+    <div class="interactive-box">
+        Mastering Two’s Complement is essential for understanding CPU arithmetic, 
+        register limits, overflow behaviour, and low-level programming.
+    </div>
 </div>
