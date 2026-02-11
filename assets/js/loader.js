@@ -1,83 +1,71 @@
+// assets/js/loader.js - ФИНАЛЬНАЯ ВЕРСИЯ
+
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. Получаем параметры URL
     const params = new URLSearchParams(window.location.search);
     const subject = params.get('subject'); 
     const lessonId = params.get('id');
 
     let currentDB = null;
-
-    // 2. Выбираем базу данных
     switch(subject) {
         case 'cs11':   currentDB = DB_CS11;   break;
         case 'prog11': currentDB = DB_PROG11; break;
         case 'cs12':   currentDB = DB_CS12;   break;
         case 'prog12': currentDB = DB_PROG12; break;
-        default: console.error("Subject database not found");
+        default: console.error("Database not found");
     }
 
-    // 3. Загружаем данные урока
     if (currentDB && currentDB[lessonId]) {
         const data = currentDB[lessonId];
         
-        // --- Заголовки и Цели ---
+        // 1. ЗАГОЛОВОК (Всегда есть)
         document.title = data.title;
         document.getElementById('lessonTitle').innerText = data.title;
-        
-        if (Array.isArray(data.los)) {
-            document.getElementById('lessonLOs').innerHTML = data.los.map(lo => 
-                `<span class="stage-badge">${lo}</span>`
-            ).join(' ');
-        } else {
-            document.getElementById('lessonLOs').innerHTML = data.los;
+        if(data.los) {
+             // Проверка на массив или строку
+             const losContent = Array.isArray(data.los) ? data.los.map(l=>`<span class="stage-badge">${l}</span>`).join(' ') : data.los;
+             document.getElementById('lessonLOs').innerHTML = losContent;
         }
 
-        // --- Картинка ---
+        // 2. КАРТИНКА (Адаптивная)
         const imgBlock = document.getElementById('imgBlock');
-        if (data.image) {
+        // Проверяем: существует ли поле И не пустое ли оно
+        if (data.image && data.image.trim() !== "") {
             document.getElementById('lessonImage').src = data.image;
             imgBlock.classList.remove('hidden');
         } else {
             imgBlock.classList.add('hidden');
         }
 
-        // --- Видео (YouTube) ---
+        // 3. ВИДЕО (Адаптивное)
         const videoBlock = document.getElementById('videoBlock');
-        if (data.video) {
+        if (data.video && data.video.trim() !== "") {
             document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${data.video}`;
             videoBlock.classList.remove('hidden');
         } else {
             videoBlock.classList.add('hidden');
         }
 
-        // --- ТЕОРИЯ (Загрузка внешнего HTML файла) ---
+        // 4. ТЕОРИЯ (Загрузка из внешнего файла)
         const theoryContainer = document.getElementById('theoryContainer');
-        
-        if (data.theoryUrl) {
+        if (data.theoryUrl && data.theoryUrl.trim() !== "") {
             theoryContainer.classList.remove('hidden');
-            // Индикатор загрузки
-            theoryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:#777;"><i class="fas fa-spinner fa-spin"></i> Loading Theory...</div>';
-
+            theoryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:#777;"><i class="fas fa-spinner fa-spin"></i> Loading Content...</div>';
+            
             fetch(data.theoryUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error("File not found");
-                    return response.text();
+                .then(r => {
+                    if(!r.ok) throw new Error("File missing");
+                    return r.text();
                 })
-                .then(html => {
-                    // Вставляем полученный HTML внутрь контейнера
-                    theoryContainer.innerHTML = html;
-                })
-                .catch(err => {
-                    theoryContainer.innerHTML = `<p style="color:red; text-align:center;">Error loading theory: ${err.message}</p>`;
-                });
+                .then(html => theoryContainer.innerHTML = html)
+                .catch(e => theoryContainer.innerHTML = `<p style="color:red">Theory file not found: ${data.theoryUrl}</p>`);
         } else {
-            // Если файла нет в базе - скрываем блок
             theoryContainer.classList.add('hidden');
         }
 
-        // --- Презентация (PDF) ---
+        // 5. ПРЕЗЕНТАЦИЯ (Адаптивная)
         const slidesBlock = document.getElementById('slidesBlock');
-        if (data.slides) {
+        if (data.slides && data.slides.trim() !== "") {
             document.getElementById('slidesFrame').src = data.slides;
             document.getElementById('slidesDownload').href = data.slides;
             slidesBlock.classList.remove('hidden');
@@ -85,18 +73,13 @@ document.addEventListener("DOMContentLoaded", function() {
             slidesBlock.classList.add('hidden');
         }
 
-        // --- Тест (Quiz) ---
+        // 6. ТЕСТ (Адаптивный)
         const quizBlock = document.getElementById('quizBlock');
-        const quizContainer = document.getElementById('quizContainer');
-        
         if (data.quiz && data.quiz.length > 0) {
             quizBlock.classList.remove('hidden');
-            quizContainer.innerHTML = data.quiz.map((item, index) => `
+            document.getElementById('quizContainer').innerHTML = data.quiz.map((item, i) => `
                 <div class="faq-item" onclick="this.classList.toggle('open')">
-                    <div class="faq-question">
-                        <span>${index + 1}. ${item.q}</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <div class="faq-question">${i+1}. ${item.q} <i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">${item.a}</div>
                 </div>
             `).join('');
@@ -105,13 +88,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     } else {
-        // Ошибка 404
-        document.querySelector('.container').innerHTML = `
-            <div style="text-align:center; margin-top:50px;">
-                <h1>Lesson Not Found</h1>
-                <p>Please check the URL or the database file.</p>
-                <a href="index.html" class="btn">Back to Dashboard</a>
-            </div>
-        `;
+        document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px;'>Lesson Not Found</h1>";
     }
 });
