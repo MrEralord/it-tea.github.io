@@ -6,14 +6,14 @@ const DB_CS12 = {
         
         // Файлы по вашему стандарту:
         image: "assets/img/12cs_u3b_img_1.png", 
-        theory: "assets/pdf/12cs/12cs_u3b_theory_1.pdf",
+        theoryUrl: "assets/lessons/12cs/12cs_u3b_1.html",
         slides: "assets/pdf/12cs/12cs_u3b_slides_1.pdf",
         
         video: "ZwIR8y3Sdwc", // ID видео с YouTube (если есть)
         
         quiz: [
-            { q: "What does PHP stand for?", a: "PHP: Hypertext Preprocessor." },
-            { q: "Where is PHP code executed?", a: "On the Server side." }
+            { q: "What is the maximum value of 8 bits?", a: "255 (calculated as 2^8 - 1)." },
+            { q: "Which digit represents the 'active' state?", a: "1" }
         ]
     },
 
