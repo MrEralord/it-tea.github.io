@@ -1,0 +1,179 @@
+<div class="theory-block">
+    <span class="stage-badge">Context</span>
+    <h3>1. Introduction</h3>
+    <p>
+        In computer systems, all data is processed in <b>binary form</b> (base 2). 
+        Binary arithmetic is fundamental for understanding how the <b>ALU</b> (Arithmetic Logic Unit) inside the CPU performs calculations.
+    </p>
+    <div class="interactive-box">
+        <strong><i class="fas fa-info-circle"></i> Key Concept:</strong>
+        Computers use only two digits: <b>0</b> and <b>1</b>.
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>2. Binary Number System (Revision)</h3>
+    <p>Binary is a <b>base-2 positional system</b>. Each position represents a power of 2.</p>
+    
+    <div class="table-wrapper">
+        <table class="comparison-table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>2³</th>
+                    <th>2²</th>
+                    <th>2¹</th>
+                    <th>2⁰</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Value</b></td>
+                    <td>8</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><b>Example:</b> 1011<sub>2</sub> = (1×8) + (0×4) + (1×2) + (1×1) = <b>11<sub>10</sub></b></p>
+</div>
+
+<div class="theory-block">
+    <h3>3. Binary Addition</h3>
+    <p>Binary addition follows simple rules, similar to decimal addition but with a base of 2.</p>
+
+    <h4>Basic Rules</h4>
+    <div class="table-wrapper">
+        <table class="comparison-table" style="width: auto; min-width: 50%;">
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>Result</th>
+                    <th>Carry</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr style="background-color: #e8f5e9;">
+                    <td><b>1</b></td>
+                    <td><b>1</b></td>
+                    <td><b>0</b></td>
+                    <td><b>1</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="interactive-box">
+        <strong><i class="fas fa-exclamation-triangle"></i> Important:</strong>
+        1 + 1 = <b>10<sub>2</sub></b> (0 is written, 1 is carried to the next column).
+    </div>
+
+    <h4>Example 1: Simple Addition (1011 + 1101)</h4>
+    <div style="font-family: 'Courier New', monospace; background: #f4f4f4; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.2rem; line-height: 1.5;">
+          1011<br>
+        + 1101<br>
+        ------<br>
+         11000<sub>2</sub>
+    </div>
+    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+        <i>Logic (Right to left):</i><br>
+        1+1 = 0 (carry 1)<br>
+        1+0+1(carry) = 0 (carry 1)<br>
+        0+1+1(carry) = 0 (carry 1)<br>
+        1+1+1(carry) = 1 (carry 1)
+    </p>
+
+    <h4>Example 2: Different Lengths (101 + 011)</h4>
+    <div style="font-family: 'Courier New', monospace; background: #f4f4f4; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+          101<br>
+        + 011<br>
+        -----<br>
+         1000<sub>2</sub>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>4. Binary Multiplication</h3>
+    <p>Simpler than decimal because we only multiply by 0 or 1.</p>
+
+    <h4>Basic Rules</h4>
+    <ul>
+        <li>0 × 0 = <b>0</b></li>
+        <li>0 × 1 = <b>0</b></li>
+        <li>1 × 0 = <b>0</b></li>
+        <li>1 × 1 = <b>1</b></li>
+    </ul>
+
+    <h4>Example 1: 101 × 11</h4>
+    <div style="font-family: 'Courier New', monospace; background: #f4f4f4; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1.1rem;">
+          101<br>
+        ×  11<br>
+        -----<br>
+          101  (Multiply by rightmost 1)<br>
+        +1010  (Multiply by next 1 & shift left)<br>
+        -----<br>
+         1111<sub>2</sub>
+    </div>
+    <p><i>Check:</i> 5 × 3 = 15 (1111<sub>2</sub> is 15). ✅</p>
+</div>
+
+<div class="theory-block">
+    <h3>5. Common Mistakes</h3>
+    <ul style="color: #c0392b;">
+        <li>❌ Forgetting to <b>carry</b> in addition.</li>
+        <li>❌ Misaligning digits (columns).</li>
+        <li>❌ Forgetting to <b>shift left</b> in multiplication.</li>
+        <li>❌ Confusing binary and decimal operations (e.g., writing 2 instead of 10).</li>
+    </ul>
+</div>
+
+<div class="theory-block" style="border-left: 5px solid #9b59b6;">
+    <h3>6. Practice Tasks</h3>
+    <p>Calculate the following on paper, then check your answers.</p>
+
+    <h4>Task 1 – Binary Addition</h4>
+    
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">a) 1010 + 0111 <i class="fas fa-chevron-down" style="float:right"></i></div>
+        <div class="faq-answer"><b>10001<sub>2</sub></b></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">b) 1110 + 0011 <i class="fas fa-chevron-down" style="float:right"></i></div>
+        <div class="faq-answer"><b>10001<sub>2</sub></b></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">c) 1001 + 1101 <i class="fas fa-chevron-down" style="float:right"></i></div>
+        <div class="faq-answer"><b>10110<sub>2</sub></b></div>
+    </div>
+
+    <h4>Task 2 – Binary Multiplication</h4>
+    
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">a) 101 × 10 <i class="fas fa-chevron-down" style="float:right"></i></div>
+        <div class="faq-answer"><b>1010<sub>2</sub></b> (Just shift left by 1)</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">b) 111 × 11 <i class="fas fa-chevron-down" style="float:right"></i></div>
+        <div class="faq-answer"><b>10101<sub>2</sub></b></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">c) 1001 × 101 <i class="fas fa-chevron-down" style="float:right"></i></div>
+        <div class="faq-answer"><b>101101<sub>2</sub></b></div>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>7. Summary</h3>
+    <ul>
+        <li>Binary arithmetic is essential for <b>CPU calculations</b> and <b>digital circuits</b>.</li>
+        <li>Addition requires careful handling of the <b>carry</b> bit.</li>
+        <li>Multiplication involves <b>shifting</b> and adding.</li>
+    </ul>
+</div>
