@@ -19,15 +19,22 @@ const DB_CS12 = {
 
     // УРОК 2: ТОЛЬКО ТЕКСТ (Картинки, видео и слайдов нет)
     "u3b-2": {
-        title: "Binary Addition",
-        los: ["12.1.1.2"],
+        title: "Binary Addition and Multiplication",
+        los: ["12.1.1.3 Perform arithmetic operations: addition and multiplication of binary numbers"],
         
-        image: "",       // Пусто -> Блок скроется
-        video: "",       // Пусто -> Блок скроется
-        slides: "",      // Пусто -> Блок скроется
+        // Поля пустые, блоки скроются сами:
+        image: "", 
+        video: "", 
+        slides: "",
+
+        // Ссылка на созданный нами файл
+        theoryUrl: "assets/lessons/12cs/12cs_u3b_2.html",
         
-        theoryUrl: "assets/lessons/12cs/12cs_u3b_2.html", // Только это покажется
-        
-        quiz: []         // Пусто -> Блок скроется
+        // Тест внизу страницы
+        quiz: [
+            { q: "What is 1 + 1 in binary?", a: "10 (0 carry 1)" },
+            { q: "Which component of the CPU performs addition?", a: "ALU (Arithmetic Logic Unit)" },
+            { q: "What is the result of 101 × 10?", a: "1010 (Shift left)" }
+        ]
     }
 };
