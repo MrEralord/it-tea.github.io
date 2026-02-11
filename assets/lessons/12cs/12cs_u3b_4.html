@@ -1,0 +1,167 @@
+<div class="theory-block">
+    <span class="stage-badge">Context</span>
+    <h3>1. The Problem of Scale</h3>
+    <p>
+        Computers need to store numbers as small as an atom's width (0.000000001) and as large as the distance to a star (9,000,000,000). 
+        <b>Fixed Point</b> systems fail here because the decimal point is "stuck". To solve this, we use <b>Floating Point</b>.
+    </p>
+    <div class="interactive-box">
+        <strong><i class="fas fa-lightbulb"></i> Scientific Notation Analogy:</strong>
+        <p>In math, we write <b>-0.0034</b> as <b>-3.4 × 10<sup>-3</sup></b>.</p>
+        <p>In binary, we do the same: <b>Mantissa × 2<sup>Exponent</sup></b>.</p>
+    </div>
+</div>
+
+<div class="theory-block">
+    <span class="stage-badge">LO 12.1.1.6</span>
+    <h3>2. Fixed Point Representation</h3>
+    <p>The binary point is fixed at a specific bit position. Bits to the right represent negative powers of 2 (fractions).</p>
+
+    <div class="table-wrapper">
+        <table class="comparison-table" style="text-align: center;">
+            <thead>
+                <tr style="background: #2c3e50; color: white;">
+                    <th>4</th>
+                    <th>2</th>
+                    <th>1</th>
+                    <th style="background: #e74c3c;">.</th>
+                    <th>0.5 (2<sup>-1</sup>)</th>
+                    <th>0.25 (2<sup>-2</sup>)</th>
+                    <th>0.125 (2<sup>-3</sup>)</th>
+                    <th>0.0625 (2<sup>-4</sup>)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td style="font-weight:bold; color:#e74c3c;">.</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><b>Value:</b> 4 + 1 + 0.5 + 0.25 = <b>5.75</b></p>
+</div>
+
+<div class="theory-block">
+    <span class="stage-badge">LO 12.1.1.7</span>
+    <h3>3. Floating Point Anatomy</h3>
+    <p>A floating point number is stored in two parts using <b>Two's Complement</b>.</p>
+
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <div style="flex: 2; background: #d6eaf8; padding: 15px; border: 2px solid #3498db; border-radius: 8px; text-align: center;">
+            <h4 style="margin:0; color: #2980b9;">MANTISSA</h4>
+            <p style="font-size: 0.9rem;">Determines the <b>Value</b> & <b>Sign</b>.<br>Usually 8-16 bits.</p>
+        </div>
+        <div style="flex: 1; background: #fadbd8; padding: 15px; border: 2px solid #e74c3c; border-radius: 8px; text-align: center;">
+            <h4 style="margin:0; color: #c0392b;">EXPONENT</h4>
+            <p style="font-size: 0.9rem;">Determines the <b>Range</b>.<br>Moves the binary point.</p>
+        </div>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>4. Normalization (The Golden Rules)</h3>
+    <p>
+        Normalization ensures unique representation and maximum precision by removing leading zeros (or leading ones in negative numbers).
+    </p>
+
+    <div class="interactive-box" style="border-left: 5px solid #27ae60;">
+        <strong><i class="fas fa-check-circle"></i> Valid Patterns:</strong>
+        <p>A normalized number MUST start with different bits:</p>
+        <ul>
+            <li>Positive: <b>0.1xxxx...</b></li>
+            <li>Negative: <b>1.0xxxx...</b></li>
+        </ul>
+    </div>
+    
+    <div style="background: #fdf2f2; padding: 15px; border-radius: 6px; margin-top: 10px;">
+        <b>Invalid Examples (Not Normalized):</b>
+        <ul>
+            <li><span style="color:red">0.0</span>101... (Wasted space, shift left!)</li>
+            <li><span style="color:red">1.1</span>010... (Wasted space, shift left!)</li>
+        </ul>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>5. Master Class: Converting Negative Numbers</h3>
+    <p><b>Task:</b> Convert <b>-3.75</b> to Floating Point (8-bit Mantissa, 4-bit Exponent).</p>
+
+    <h4>Step 1: Fixed Point Binary (Positive)</h4>
+    <p>3 = 11, 0.75 = .11 → <b>011.110</b> (Added leading zero)</p>
+
+    <h4>Step 2: Two's Complement (Flip & Add 1)</h4>
+    <p>Flip: 100.001<br>Add 1: <b>100.010</b> (This is -3.75 in fixed point)</p>
+
+    <h4>Step 3: Normalize (Shift to get 1.0)</h4>
+    
+    <div style="font-family: monospace; background: #eee; padding: 10px; border-left: 4px solid #333;">
+        Current:  100.010<br>
+        Shift 1:  10.0010<br>
+        Shift 2:  1.00010 (Stop! Starts with 1.0)
+    </div>
+    <p>We shifted <b>2 places left</b>. So Exponent = <b>+2</b>.</p>
+
+    <h4>Step 4: Exponent to Binary</h4>
+    <p>+2 = <b>0010</b></p>
+
+    <h4>Step 5: Assemble</h4>
+    <div class="table-wrapper">
+        <table class="comparison-table" style="text-align: center;">
+            <thead>
+                <tr><th colspan="8">Mantissa (8 bits)</th><th colspan="4">Exponent (4 bits)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>1</b></td><td><b>0</b></td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td>
+                    <td style="background:#eee;">0</td><td style="background:#eee;">0</td><td style="background:#eee;">1</td><td style="background:#eee;">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="theory-block" style="border-left: 5px solid #8e44ad;">
+    <h3>6. The "Slider" Trade-off: Precision vs Range</h3>
+    <p>If you have a fixed number of bits (e.g., 16), you have to choose how to split them.</p>
+
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Change</th>
+                    <th>Result on Range</th>
+                    <th>Result on Precision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>More bits for Mantissa</b></td>
+                    <td>Decreases</td>
+                    <td><span style="color: green; font-weight: bold;">Increases</span> (More accuracy)</td>
+                </tr>
+                <tr>
+                    <td><b>More bits for Exponent</b></td>
+                    <td><span style="color: green; font-weight: bold;">Increases</span> (Larger numbers)</td>
+                    <td>Decreases</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><b>Analogy:</b> A camera lens. You can Zoom In (Precision) or Zoom Out (Range), but not both perfectly at once.</p>
+</div>
+
+<div class="theory-block">
+    <h3>7. Types of Errors</h3>
+    <ul>
+        <li><b>Overflow:</b> Number is too large for the Exponent.</li>
+        <li><b>Underflow:</b> Number is too small (too close to zero) for the Exponent.</li>
+        <li><b>Rounding Error:</b> Some decimals (like 0.1) cannot be represented exactly in binary, leading to infinite recurring fractions (0.000110011...).</li>
+    </ul>
+</div>
