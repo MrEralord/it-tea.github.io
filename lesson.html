@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson View | IT-Tea</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Zoomed Image">
+</div>
+
+<div class="container">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <button onclick="history.back()" class="btn-secondary"><i class="fas fa-arrow-left"></i> Back</button>
+        <a href="index.html" class="home-link"><i class="fas fa-home"></i> Dashboard</a>
+    </div>
+
+    <div class="lesson-header">
+        <h1 id="lessonTitle">Loading Lesson...</h1>
+        <div id="lessonLOs" class="lo-container"></div>
+    </div>
+
+    <div id="imgBlock" class="theory-block center-text hidden">
+        <div class="img-container">
+            <img id="lessonImage" src="" alt="Lesson Visual" onclick="openLightbox(this)">
+            <p class="caption"><i class="fas fa-search-plus"></i> Click to zoom</p>
+        </div>
+    </div>
+
+    <div id="videoBlock" class="theory-block hidden">
+        <h3><i class="fab fa-youtube" style="color: #e74c3c;"></i> Video Explanation</h3>
+        <div class="video-wrapper">
+            <iframe id="videoFrame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="openTab('theory')"><i class="fas fa-book"></i> Theory</button>
+        <button class="tab-btn" onclick="openTab('slides')"><i class="fas fa-desktop"></i> Presentation</button>
+    </div>
+
+    <div id="theory" class="tab-content active">
+        <iframe id="theoryFrame" class="pdf-desktop" src=""></iframe>
+        <div class="pdf-mobile">
+            <i class="fas fa-file-pdf fa-3x" style="color: var(--primary);"></i>
+            <p>PDF view is optimized for desktop.</p>
+            <a id="theoryDownload" href="#" class="btn" download>Download Theory PDF</a>
+        </div>
+    </div>
+
+    <div id="slides" class="tab-content">
+        <iframe id="slidesFrame" class="pdf-desktop" src=""></iframe>
+        <div class="pdf-mobile">
+            <i class="fas fa-file-powerpoint fa-3x" style="color: var(--accent);"></i>
+            <p>View slides on your device.</p>
+            <a id="slidesDownload" href="#" class="btn" download>Download Slides PDF</a>
+        </div>
+    </div>
+
+    <div id="quizBlock" class="theory-block quiz-section hidden">
+        <h3><i class="fas fa-question-circle"></i> Self-Check Quiz</h3>
+        <p style="margin-bottom: 15px; color: #666;">Click on a question to reveal the answer.</p>
+        <div id="quizContainer"></div>
+    </div>
+
+</div>
+
+<script src="assets/js/db_cs11.js"></script>
+<script src="assets/js/db_prog11.js"></script>
+<script src="assets/js/db_cs12.js"></script>
+<script src="assets/js/db_prog12.js"></script>
+
+<script src="assets/js/loader.js"></script>
+
+<script>
+    // Логика лайтбокса
+    function openLightbox(img) {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Логика табов
+    function openTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabName).style.display = 'block';
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
