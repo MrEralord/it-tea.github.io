@@ -36,5 +36,24 @@ const DB_CS12 = {
             { q: "Which component of the CPU performs addition?", a: "ALU (Arithmetic Logic Unit)" },
             { q: "What is the result of 101 × 10?", a: "1010 (Shift left)" }
         ]
+    },
+    "u3b-3": {
+        title: "Binary Arithmetic: Addition & Multiplication",
+        los: ["12.1.1.3 Perform arithmetic operations", "12.1.1.4 Understand overflow and bit-depth"],
+        
+        // Поля пустые (блоки скроются)
+        image: "", 
+        video: "", 
+        slides: "",
+
+        // Наш новый файл
+        theoryUrl: "assets/lessons/12cs/12cs_u3b_3.html",
+        
+        // Мини-квиз
+        quiz: [
+            { q: "What is 1 + 1 in binary?", a: "10 (0 carry 1)" },
+            { q: "What happens if an unsigned addition exceeds the register size?", a: "Overflow Error" },
+            { q: "What is the result of multiplying by 10 (binary)?", a: "Left shift by 1 position" }
+        ]
     }
 };
