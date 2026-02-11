@@ -39,24 +39,16 @@
         </div>
     </div>
 
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="openTab('theory')"><i class="fas fa-book"></i> Theory</button>
-        <button class="tab-btn" onclick="openTab('slides')"><i class="fas fa-desktop"></i> Presentation</button>
-    </div>
-
-    <div id="theory" class="tab-content active">
-        <iframe id="theoryFrame" class="pdf-desktop" src=""></iframe>
-        <div class="pdf-mobile">
-            <i class="fas fa-file-pdf fa-3x" style="color: var(--primary);"></i>
-            <p>PDF view is optimized for desktop.</p>
-            <a id="theoryDownload" href="#" class="btn" download>Download Theory PDF</a>
+    <div id="theoryContainer" class="theory-block content-style hidden">
         </div>
-    </div>
 
-    <div id="slides" class="tab-content">
-        <iframe id="slidesFrame" class="pdf-desktop" src=""></iframe>
-        <div class="pdf-mobile">
-            <i class="fas fa-file-powerpoint fa-3x" style="color: var(--accent);"></i>
+    <div id="slidesBlock" class="theory-block hidden">
+        <h3><i class="fas fa-desktop" style="color: #e67e22;"></i> Presentation Slides</h3>
+        
+        <iframe id="slidesFrame" class="pdf-viewer" src=""></iframe>
+        
+        <div class="mobile-pdf-link">
+            <i class="fas fa-file-powerpoint fa-3x" style="color: #e67e22;"></i>
             <p>View slides on your device.</p>
             <a id="slidesDownload" href="#" class="btn" download>Download Slides PDF</a>
         </div>
