@@ -1,0 +1,286 @@
+<div class="theory-block">
+    <span class="stage-badge">Context</span>
+    <h3>1. The Foundations: Why Systems Differ</h3>
+    <p>
+        To understand modern computing, we must first understand the systems used to represent data. 
+        Most of us are raised using the <b>Decimal system (Base 10)</b>, which relies on ten digits (0–9). 
+        However, computers operate on a much simpler logic: the <b>Binary system (Base 2)</b>.
+    </p>
+    <div class="interactive-box">
+        <strong><i class="fas fa-lightbulb"></i> The Logic:</strong> 
+        Binary is the language of "on" and "off" states. 
+        A <b>1</b> represents an active ("on") state, while a <b>0</b> represents an inactive ("off") state.
+    </div>
+
+    <h4>Comparison of Systems</h4>
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Decimal (Base 10)</th>
+                    <th>Binary (Base 2)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Digits Used</b></td>
+                    <td>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</td>
+                    <td>0, 1</td>
+                </tr>
+                <tr>
+                    <td><b>Logic</b></td>
+                    <td>Powers of 10</td>
+                    <td>Powers of 2</td>
+                </tr>
+                <tr>
+                    <td><b>Column Values</b></td>
+                    <td>10<sup>0</sup>, 10<sup>1</sup>, 10<sup>2</sup>... (1, 10, 100)</td>
+                    <td>2<sup>0</sup>, 2<sup>1</sup>, 2<sup>2</sup>... (1, 2, 4)</td>
+                </tr>
+                <tr>
+                    <td><b>Computer Role</b></td>
+                    <td>Human-readable input/output</td>
+                    <td>Machine "on/off" states</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>2. The Power Grid: Understanding the Values of 2</h3>
+    <p>
+        To convert numbers efficiently, you must be familiar with the powers of two. 
+        These values serve as the "headings" for our binary columns. 
+        When working with a standard <b>byte</b> (8 bits), we use the powers from 2<sup>0</sup> to 2<sup>7</sup>.
+    </p>
+    
+    <ul style="columns: 2; -webkit-columns: 2; list-style: none; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+        <li>2<sup>0</sup> = <b>1</b></li>
+        <li>2<sup>1</sup> = <b>2</b></li>
+        <li>2<sup>2</sup> = <b>4</b></li>
+        <li>2<sup>3</sup> = <b>8</b></li>
+        <li>2<sup>4</sup> = <b>16</b></li>
+        <li>2<sup>5</sup> = <b>32</b></li>
+        <li>2<sup>6</sup> = <b>64</b></li>
+        <li>2<sup>7</sup> = <b>128</b></li>
+    </ul>
+
+    <p><b>The 2<sup>n</sup> - 1 Rule:</b> The maximum value representable by <i>n</i> bits is calculated as 2<sup>n</sup> - 1. For an 8-bit byte, the calculation is 2<sup>8</sup> - 1 = <b>255</b>. This means a single byte can represent 256 distinct values (0 to 255).</p>
+</div>
+
+<div class="theory-block">
+    <h3>3. Method 1: The Subtraction of Powers</h3>
+    <p>This method is ideal for smaller numbers or quick mental calculations. It involves treating the decimal number as a sum of specific powers of two.</p>
+    
+    <h4>Walkthrough: Converting 75 to Binary</h4>
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Power of 2</th>
+                    <th>Calculation</th>
+                    <th>Status (Bit)</th>
+                    <th>Remainder</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>128 (2<sup>7</sup>)</td>
+                    <td>Too large</td>
+                    <td><b>0</b></td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td>64 (2<sup>6</sup>)</td>
+                    <td>75 - 64 = 11</td>
+                    <td><b>1</b></td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>32 (2<sup>5</sup>)</td>
+                    <td>Too large</td>
+                    <td><b>0</b></td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>16 (2<sup>4</sup>)</td>
+                    <td>Too large</td>
+                    <td><b>0</b></td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>8 (2<sup>3</sup>)</td>
+                    <td>11 - 8 = 3</td>
+                    <td><b>1</b></td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4 (2<sup>2</sup>)</td>
+                    <td>Too large</td>
+                    <td><b>0</b></td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>2 (2<sup>1</sup>)</td>
+                    <td>3 - 2 = 1</td>
+                    <td><b>1</b></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1 (2<sup>0</sup>)</td>
+                    <td>1 - 1 = 0</td>
+                    <td><b>1</b></td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="interactive-box" style="text-align: center; font-size: 1.2rem;">
+        Result: 75<sub>10</sub> = <b>01001011<sub>2</sub></b>
+    </p>
+</div>
+
+<div class="theory-block">
+    <h3>4. Method 2: Successive Division</h3>
+    <p>The successive division method is reliable for larger numbers. Divide your decimal number by 2 and record the remainder.</p>
+    
+    <ul>
+        <li><b>LSB (Least Significant Bit):</b> The first remainder found (Rightmost digit).</li>
+        <li><b>MSB (Most Significant Bit):</b> The final remainder found (Leftmost digit).</li>
+    </ul>
+
+    <h4>Walkthrough: Converting 159 to Binary</h4>
+    <div class="table-wrapper">
+        <table class="comparison-table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Division Step</th>
+                    <th>Quotient</th>
+                    <th>Remainder</th>
+                    <th>Significance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>159 ÷ 2</td>
+                    <td>79</td>
+                    <td><b>1</b></td>
+                    <td>LSB (Read Last)</td>
+                </tr>
+                <tr>
+                    <td>79 ÷ 2</td>
+                    <td>39</td>
+                    <td><b>1</b></td>
+                    <td>↑</td>
+                </tr>
+                <tr>
+                    <td>39 ÷ 2</td>
+                    <td>19</td>
+                    <td><b>1</b></td>
+                    <td>↑</td>
+                </tr>
+                <tr>
+                    <td>19 ÷ 2</td>
+                    <td>9</td>
+                    <td><b>1</b></td>
+                    <td>↑</td>
+                </tr>
+                <tr>
+                    <td>9 ÷ 2</td>
+                    <td>4</td>
+                    <td><b>1</b></td>
+                    <td>↑</td>
+                </tr>
+                <tr>
+                    <td>4 ÷ 2</td>
+                    <td>2</td>
+                    <td><b>0</b></td>
+                    <td>↑</td>
+                </tr>
+                <tr>
+                    <td>2 ÷ 2</td>
+                    <td>1</td>
+                    <td><b>0</b></td>
+                    <td>↑</td>
+                </tr>
+                <tr style="background-color: #e8f5e9;">
+                    <td>1 ÷ 2</td>
+                    <td>0</td>
+                    <td><b>1</b></td>
+                    <td><b>MSB (Read First)</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="interactive-box">
+        <strong>Important:</strong> Read the remainders from <b>bottom-to-top</b>. Result: 159<sub>10</sub> = <b>10011111<sub>2</sub></b>.
+    </div>
+</div>
+
+<div class="theory-block">
+    <h3>5. The Programmer’s Shortcut: Hexadecimal</h3>
+    <p>Binary strings are long. Programmers use <b>Hexadecimal (Base 16)</b> because one Hex character represents exactly four binary bits, known as a <b>"Nibble"</b>.</p>
+
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Decimal</th>
+                    <th>Binary (Nibble)</th>
+                    <th>Hexadecimal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>8</td><td>1000</td><td><b>8</b></td></tr>
+                <tr><td>9</td><td>1001</td><td><b>9</b></td></tr>
+                <tr><td>10</td><td>1010</td><td><b>A</b></td></tr>
+                <tr><td>11</td><td>1011</td><td><b>B</b></td></tr>
+                <tr><td>12</td><td>1100</td><td><b>C</b></td></tr>
+                <tr><td>13</td><td>1101</td><td><b>D</b></td></tr>
+                <tr><td>14</td><td>1110</td><td><b>E</b></td></tr>
+                <tr><td>15</td><td>1111</td><td><b>F</b></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><b>Real-World Applications:</b> Color codes (#FFFFFF), MAC Addresses, Memory Locations.</p>
+</div>
+
+<div class="theory-block" style="border-left: 5px solid #9b59b6;">
+    <h3>6. Knowledge Check & Practice</h3>
+    <p>Try to solve these without looking at the answer first. Click to reveal.</p>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            1. Subtraction: Convert <b>142</b> to 8-bit binary.
+            <i class="fas fa-chevron-down" style="float:right"></i>
+        </div>
+        <div class="faq-answer">
+            <b>Answer: 10001110<sub>2</sub></b><br>
+            <i>Hint: 128 is active (142-128=14). Then 8, 4, and 2 are active.</i>
+        </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            2. Division: Convert <b>339</b> to binary.
+            <i class="fas fa-chevron-down" style="float:right"></i>
+        </div>
+        <div class="faq-answer">
+            <b>Answer: 101010011<sub>2</sub></b><br>
+            <i>Note: 339 > 255, so this requires 9 bits.</i>
+        </div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+            3. The Nibble Check: What is Hex <b>D</b> in binary?
+            <i class="fas fa-chevron-down" style="float:right"></i>
+        </div>
+        <div class="faq-answer">
+            <b>Answer: 1101<sub>2</sub></b><br>
+            <i>Reason: D in Hex is 13 in Decimal. 8 + 4 + 1 = 13.</i>
+        </div>
+    </div>
+</div>
