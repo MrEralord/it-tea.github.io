@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson View | IT-Tea</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hidden { display: none; }
+        .tab-btn { cursor: pointer; padding: 10px 20px; background: #eee; border: none; font-weight: bold; }
+        .tab-btn.active { background: var(--primary); color: white; }
+        .tab-content { display: none; padding: 20px; border: 1px solid #ccc; background: white; }
+        .tab-content.active { display: block; }
+        
+        /* Стили для вопросов */
+        .faq-item { margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .faq-question { padding: 15px; background: #f9f9f9; cursor: pointer; font-weight: bold; }
+        .faq-answer { padding: 15px; display: none; border-top: 1px solid #ddd; color: var(--success); }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-question { background: #e8f5e9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="btn" style="margin-bottom: 20px;">← Back to Dashboard</a>
+
+    <div class="lesson-header">
+        <h1 id="lessonTitle">Loading...</h1>
+        <div id="lessonLOs" style="margin-top: 10px;"></div>
+    </div>
+
+    <div class="theory-block center-img" id="imgBlock">
+        <img id="lessonImage" src="" alt="Lesson Visual" style="max-height: 300px; max-width: 100%; border-radius: 8px;">
+    </div>
+
+    <div class="theory-block" id="videoBlock">
+        <h3><i class="fab fa-youtube" style="color: red;"></i> Video Explanation</h3>
+        <div class="video-wrapper">
+            <iframe id="videoFrame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <button class="tab-btn active" onclick="openTab('theory')">📖 Theory (PDF)</button>
+        <button class="tab-btn" onclick="openTab('slides')">🖥️ Slides (PDF)</button>
+    </div>
+
+    <div id="theory" class="tab-content active">
+        <iframe id="theoryFrame" style="width:100%; height:600px; border:none;"></iframe>
+        <div style="text-align: right; margin-top: 5px;">
+            <a id="theoryDownload" href="#" class="btn" download>Download Theory</a>
+        </div>
+    </div>
+
+    <div id="slides" class="tab-content">
+        <iframe id="slidesFrame" style="width:100%; height:500px; border:none;"></iframe>
+        <div style="text-align: right; margin-top: 5px;">
+            <a id="slidesDownload" href="#" class="btn" download>Download Slides</a>
+        </div>
+    </div>
+
+    <div class="theory-block" style="margin-top: 30px; border-left: 5px solid var(--accent);">
+        <h3><i class="fas fa-question-circle"></i> Self-Check</h3>
+        <p>Click on the question to reveal the answer.</p>
+        <div id="quizContainer"></div>
+    </div>
+
+</div>
+
+<script src="data.js"></script> 
+
+<script>
+    // 1. Получаем ID из ссылки (например, lesson.html?id=11-1a-software)
+    const params = new URLSearchParams(window.location.search);
+    const lessonId = params.get('id');
+    const lesson = lessonsData[lessonId];
+
+    if (lesson) {
+        // 2. Заполняем страницу данными
+        document.title = lesson.title;
+        document.getElementById('lessonTitle').innerText = lesson.title;
+        
+        // LOs
+        document.getElementById('lessonLOs').innerHTML = lesson.los.map(lo => 
+            `<span class="stage-badge">${lo}</span>`
+        ).join(' ');
+
+        // Картинка
+        if(lesson.image) {
+            document.getElementById('lessonImage').src = lesson.image;
+        } else {
+            document.getElementById('imgBlock').classList.add('hidden');
+        }
+
+        // Видео
+        if (lesson.video) {
+            document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${lesson.video}`;
+        } else {
+            document.getElementById('videoBlock').classList.add('hidden');
+        }
+
+        // PDF Theory
+        document.getElementById('theoryFrame').src = lesson.theoryPdf;
+        document.getElementById('theoryDownload').href = lesson.theoryPdf;
+
+        // PDF Slides
+        document.getElementById('slidesFrame').src = lesson.presentationPdf;
+        document.getElementById('slidesDownload').href = lesson.presentationPdf;
+
+        // Quiz
+        const quizHTML = lesson.quiz.map(item => `
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-question">${item.q} <i class="fas fa-chevron-down" style="float:right"></i></div>
+                <div class="faq-answer">${item.a}</div>
+            </div>
+        `).join('');
+        document.getElementById('quizContainer').innerHTML = quizHTML;
+
+    } else {
+        document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px;'>Lesson not found (Check ID)</h1>";
+    }
+
+    // Переключение вкладок
+    function openTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabName).classList.add('active');
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
