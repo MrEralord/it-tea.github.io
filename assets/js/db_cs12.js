@@ -38,22 +38,35 @@ const DB_CS12 = {
         ]
     },
     "u3b-3": {
-        title: "Binary Arithmetic: Addition & Multiplication",
-        los: ["12.1.1.3 Perform arithmetic operations", "12.1.1.4 Understand overflow and bit-depth"],
+        title: "Two's Complement Representation",
+        los: ["12.1.1.4 Represent positive and negative numbers in Two's Complement"],
         
         // Поля пустые (блоки скроются)
         image: "", 
         video: "", 
         slides: "",
 
-        // Наш новый файл
+        // Ссылка на HTML файл (создай его!)
         theoryUrl: "assets/lessons/12cs/12cs_u3b_3.html",
         
-        // Мини-квиз
+        // Cambridge-style Self Check
         quiz: [
-            { q: "What is 1 + 1 in binary?", a: "10 (0 carry 1)" },
-            { q: "What happens if an unsigned addition exceeds the register size?", a: "Overflow Error" },
-            { q: "What is the result of multiplying by 10 (binary)?", a: "Left shift by 1 position" }
+            { 
+                q: "What is the decimal value of the Two's Complement number <b>11111111</b>?", 
+                a: "<b>-1</b> (Flip bits: 00000000 → Add 1: 00000001 → Apply sign: -1)" 
+            },
+            { 
+                q: "Convert <b>-18</b> to 8-bit binary.", 
+                a: "<b>11101110</b> (18 is 00010010 → Flip: 11101101 → Add 1: 11101110)" 
+            },
+            { 
+                q: "What is the minimum value storeable in an 8-bit signed register?", 
+                a: "<b>-128</b> (Equation: -2^(8-1))" 
+            },
+            { 
+                q: "Why is Two's Complement preferred over Sign & Magnitude?", 
+                a: "It eliminates the 'double zero' problem and simplifies arithmetic logic." 
+            }
         ]
     }
 };
