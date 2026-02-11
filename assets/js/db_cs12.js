@@ -1,8 +1,8 @@
 const DB_CS12 = {
     // ID урока: u3b-1 (Unit 3B, Урок 1)
     "u3b-1": {
-        title: "Web Technologies: Intro to PHP",
-        los: ["12.5.3.1 Create basic PHP scripts", "12.5.3.2 Understand server-side scripting"],
+        title: "Number systems. Represent positive decimal numbers in binary.",
+        los: ["12.1.1.1 convert a number from one number system to another","12.1.1.2 explain the advantages of using hexadecimal numbers in computer systems"],
         
         // Файлы по вашему стандарту:
         image: "assets/img/12cs_u3b_img_1.png", 
