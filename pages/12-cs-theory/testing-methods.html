@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Methods — IT-Tea.org</title>
+    <meta name="description"
+        content="Software testing: normal, extreme, erroneous data. Syntax, logic, runtime errors. NIS Grade 12 CS.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/lesson.css">
+</head>
+
+<body>
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><i class="fas fa-mug-hot logo-icon"></i><span
+                    class="logo-text">IT-Tea<span class="logo-dot">.org</span></span></a>
+            <nav class="header-nav" id="header-nav">
+                <a href="../../index.html#syllabus">Syllabus</a>
+                <a href="../../index.html#interactive-lab">Lab</a>
+                <a href="../../index.html#assessment-hub">Assessment</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i
+                    class="fas fa-moon"></i></button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+    <main class="lesson-page">
+        <div class="lesson-container">
+            <nav class="lesson-breadcrumb">
+                <a href="../../index.html">Home</a> <span class="sep">/</span>
+                <a href="../../index.html#syllabus">Grade 12 CS</a> <span class="sep">/</span>
+                <span>12.1C — Testing Methods</span>
+            </nav>
+            <div class="lesson-header">
+                <div class="lesson-unit-badge"><i class="fas fa-vial"></i> Unit 12.1C · Term 1</div>
+                <h1 class="lesson-title">Testing Methods</h1>
+                <p class="lesson-intro">Testing ensures software works correctly. We test with different <strong>types
+                        of data</strong> and look for different <strong>types of errors</strong>. A well-tested program
+                    handles expected, extreme, and unexpected inputs gracefully.</p>
+            </div>
+            <div class="lesson-lo-card">
+                <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
+                <ul class="lesson-lo-list">
+                    <li><span class="lo-code">12.5.3.2</span> Perform testing using normal data</li>
+                    <li><span class="lo-code">12.5.3.3</span> Perform testing using extreme data</li>
+                    <li><span class="lo-code">12.5.3.4</span> Perform testing using erroneous data</li>
+                    <li><span class="lo-code">12.5.3.1</span> Describe execution errors at program startup</li>
+                    <li><span class="lo-code">12.5.3.5</span> Describe a syntax error in a program code</li>
+                    <li><span class="lo-code">12.5.3.6</span> Describe a logic error in a program code</li>
+                </ul>
+            </div>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-lightbulb"></i> Conceptual Anchor</h2>
+                <div class="analogy-box">
+                    <h4><i class="fas fa-car-crash"></i> The Car Safety Test</h4>
+                    <p>Before selling a car, manufacturers test it in <strong>normal</strong> conditions (city driving),
+                        <strong>extreme</strong> conditions (desert heat, icy roads), and <strong>erroneous</strong>
+                        conditions (what if the driver presses gas and brake simultaneously?). Software testing works
+                        the same way.</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-book"></i> Rules &amp; Theory</h2>
+                <h3 style="font-size:1rem;margin-bottom:var(--space-sm);color:var(--text-primary);">Types of Test Data
+                </h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Definition</th>
+                            <th>Example (age 0–120)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Normal</strong></td>
+                            <td>Typical, expected values that should be accepted</td>
+                            <td>25, 16, 45, 70</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extreme (Boundary)</strong></td>
+                            <td>Values at the edges of the valid range</td>
+                            <td>0, 1, 119, 120</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Erroneous (Invalid)</strong></td>
+                            <td>Values that should be rejected</td>
+                            <td>-5, 150, "abc", 999</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Test Plan
+                    Example</h3>
+                <div class="code-block"><code># Program: Enter a mark between 0 and 100
+# Test Plan:
+┌──────────┬──────────┬──────────────────┬──────────────────┐
+│ Test #   │ Input    │ Expected Output  │ Data Type        │
+├──────────┼──────────┼──────────────────┼──────────────────┤
+│ 1        │ 75       │ Accepted (Pass)  │ Normal           │
+│ 2        │ 0        │ Accepted (Fail)  │ Extreme (min)    │
+│ 3        │ 100      │ Accepted (Pass)  │ Extreme (max)    │
+│ 4        │ -1       │ Rejected         │ Erroneous        │
+│ 5        │ 101      │ Rejected         │ Erroneous        │
+│ 6        │ "hello"  │ Rejected         │ Erroneous        │
+│ 7        │ 50       │ Accepted (Pass)  │ Normal (boundary)│
+└──────────┴──────────┴──────────────────┴──────────────────┘</code></div>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Types of
+                    Errors</h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Error Type</th>
+                            <th>When Detected</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Syntax Error</strong></td>
+                            <td>Compilation / interpretation</td>
+                            <td>Code violates language grammar rules</td>
+                            <td><code>print("Hello"</code> — missing <code>)</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Runtime Error</strong></td>
+                            <td>During execution</td>
+                            <td>Program crashes mid-run</td>
+                            <td><code>x = 10 / 0</code> — division by zero</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Logic Error</strong></td>
+                            <td>Never (program runs but gives wrong results)</td>
+                            <td>Code logic is incorrect</td>
+                            <td><code>average = a + b / 2</code> instead of <code>(a+b)/2</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Error
+                    Examples in Python</h3>
+                <div class="code-block"><code># SYNTAX ERROR — detected before running
+print("Hello"
+# SyntaxError: unexpected EOF while parsing
+
+# RUNTIME ERROR — detected during execution
+age = int(input("Enter age: "))  # user types "abc"
+# ValueError: invalid literal for int()
+
+x = 10 / 0
+# ZeroDivisionError: division by zero
+
+# LOGIC ERROR — program runs but gives wrong answer
+def average(a, b):
+    return a + b / 2   # Should be (a + b) / 2
+    # average(10, 20) returns 20.0 instead of 15.0</code></div>
+                <div class="note-box">
+                    <h4><i class="fas fa-info-circle"></i> Logic Errors are the Hardest to Find</h4>
+                    <p>The program doesn't crash and no error message appears — it just produces <strong>wrong
+                            results</strong>. That's why trace tables and systematic testing with known expected outputs
+                        are essential.</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</h2>
+                <div class="pitfall-box">
+                    <h4><i class="fas fa-bug"></i> Only Testing Normal Data</h4>
+                    <p>Many students only test with "nice" values. Always test <strong>extreme</strong> (boundaries) and
+                        <strong>erroneous</strong> (wrong type, out of range) inputs too!</p>
+                </div>
+                <div class="pitfall-box">
+                    <h4><i class="fas fa-bug"></i> Mixing Up Runtime and Logic Errors</h4>
+                    <p>Runtime errors <strong>crash</strong> the program. Logic errors <strong>don't crash</strong> —
+                        the program runs but gives wrong results. If the program crashes = runtime. If it runs but the
+                        answer is wrong = logic.</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-tasks"></i> Tasks</h2>
+                <div class="assessment-tasks">
+                    <div class="task-item"><span class="task-level remember">Remember</span>
+                        <p>Define normal, extreme, and erroneous test data with examples.</p>
+                    </div>
+                    <div class="task-item"><span class="task-level apply">Apply</span>
+                        <p>Create a test plan (table) for a program that accepts a password between 8 and 20 characters.
+                            Include at least 6 tests.</p>
+                    </div>
+                    <div class="task-item"><span class="task-level analyze">Analyze</span>
+                        <p>Identify the error type in each: (a) <code>pritn("Hello")</code> (b)
+                            <code>total = price * quanty</code> where <code>quanty</code> is undefined (c)
+                            <code>discount = price * 0.1</code> when it should be <code>price * 0.15</code></p>
+                    </div>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-question-circle"></i> Self-Check Quiz</h2>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q1: What is extreme (boundary) test data?</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Values at the very edge of the
+                        valid range. For 0–100: extreme values are 0 and 100.</div>
+                </div>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q2: Which error type does the program NOT crash for?</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Logic error — the program runs
+                        fine but produces incorrect results.</div>
+                </div>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q3: Give an example of a runtime error.</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Division by zero
+                        (ZeroDivisionError), converting non-numeric string to int (ValueError), accessing a file that
+                        doesn't exist.</div>
+                </div>
+            </section>
+            <nav class="lesson-nav">
+                <a href="declarative-imperative.html"><span class="nav-label">← Previous</span><span
+                        class="nav-title">Declarative vs Imperative</span></a>
+                <a href="threats-computer-system.html"><span class="nav-label">Next →</span><span
+                        class="nav-title">Threats to Computer System</span></a>
+            </nav>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <p>IT-Tea.org © 2025 — NIS Grade 12 Computer Science</p>
+    </footer>
+    <script src="../../js/app.js"></script>
+</body>
+
+</html>

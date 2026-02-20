@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threats to Computer Systems — IT-Tea.org</title>
+    <meta name="description" content="Malware types, physical risks, ethical problems from cracking. NIS Grade 12 CS.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/lesson.css">
+</head>
+
+<body>
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><i class="fas fa-mug-hot logo-icon"></i><span
+                    class="logo-text">IT-Tea<span class="logo-dot">.org</span></span></a>
+            <nav class="header-nav" id="header-nav">
+                <a href="../../index.html#syllabus">Syllabus</a>
+                <a href="../../index.html#interactive-lab">Lab</a>
+                <a href="../../index.html#assessment-hub">Assessment</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i
+                    class="fas fa-moon"></i></button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+    <main class="lesson-page">
+        <div class="lesson-container">
+            <nav class="lesson-breadcrumb">
+                <a href="../../index.html">Home</a> <span class="sep">/</span>
+                <a href="../../index.html#syllabus">Grade 12 CS</a> <span class="sep">/</span>
+                <span>12.2A — Threats to Computer System</span>
+            </nav>
+            <div class="lesson-header">
+                <div class="lesson-unit-badge"><i class="fas fa-shield-alt"></i> Unit 12.2A · Term 2</div>
+                <h1 class="lesson-title">Threats to Computer Systems</h1>
+                <p class="lesson-intro">Computer systems face threats from <strong>malware</strong>, <strong>physical
+                        risks</strong>, and <strong>human actions</strong> like cracking. Understanding these threats is
+                    the first step in protecting systems and data.</p>
+            </div>
+            <div class="lesson-lo-card">
+                <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
+                <ul class="lesson-lo-list">
+                    <li><span class="lo-code">12.1.3.2</span> Analyze problems arising due to malware, physical risks
+                    </li>
+                    <li><span class="lo-code">12.1.3.1</span> Analyze ethical problems arising due to computer system
+                        cracking</li>
+                </ul>
+            </div>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-lightbulb"></i> Conceptual Anchor</h2>
+                <div class="analogy-box">
+                    <h4><i class="fas fa-home"></i> The House Security Analogy</h4>
+                    <p>Your house faces threats: <strong>burglars</strong> (hackers), <strong>fire</strong> (hardware
+                        failure), <strong>termites</strong> (malware slowly eating from inside), and
+                        <strong>floods</strong> (power surges). Each threat requires a different protection strategy.
+                    </p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-book"></i> Rules &amp; Theory</h2>
+                <h3 style="font-size:1rem;margin-bottom:var(--space-sm);color:var(--text-primary);">Types of Malware
+                </h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Malware</th>
+                            <th>How It Works</th>
+                            <th>Damage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Virus</strong></td>
+                            <td>Attaches to a program; spreads when the program runs</td>
+                            <td>Corrupts/deletes files, slows system</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Worm</strong></td>
+                            <td>Self-replicates across networks without user action</td>
+                            <td>Consumes bandwidth, crashes networks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trojan Horse</strong></td>
+                            <td>Disguised as legitimate software</td>
+                            <td>Creates backdoor for attacker access</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spyware</strong></td>
+                            <td>Secretly monitors user activity</td>
+                            <td>Steals passwords, browsing history, personal data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ransomware</strong></td>
+                            <td>Encrypts files; demands payment for decryption key</td>
+                            <td>Data loss, financial damage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adware</strong></td>
+                            <td>Displays unwanted advertisements</td>
+                            <td>Slows system, tracks browsing habits</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keylogger</strong></td>
+                            <td>Records every keystroke</td>
+                            <td>Captures passwords, credit card numbers</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Physical
+                    Risks</h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Description</th>
+                            <th>Prevention</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Power surge / failure</strong></td>
+                            <td>Sudden electrical spike or loss damages hardware</td>
+                            <td>UPS (Uninterruptible Power Supply), surge protectors</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fire / flood</strong></td>
+                            <td>Natural disaster destroys equipment</td>
+                            <td>Off-site backups, fire suppression systems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hardware failure</strong></td>
+                            <td>Hard drive crash, component wear</td>
+                            <td>RAID, regular backups, maintenance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Theft</strong></td>
+                            <td>Physical stealing of devices</td>
+                            <td>Locks, CCTV, encryption of storage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Environmental</strong></td>
+                            <td>Overheating, humidity, dust</td>
+                            <td>Climate control, clean server rooms</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Hacking
+                    vs Cracking — Ethical Issues</h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Definition</th>
+                            <th>Legal?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hacker (white hat)</strong></td>
+                            <td>Tests security with permission to find vulnerabilities</td>
+                            <td>Yes — ethical, legal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cracker (black hat)</strong></td>
+                            <td>Breaks into systems without permission for malicious purposes</td>
+                            <td>No — criminal offense</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note-box">
+                    <h4><i class="fas fa-info-circle"></i> Ethical Problems from Cracking</h4>
+                    <ul style="margin:0;padding-left:1.2rem;">
+                        <li><strong>Privacy violation</strong> — accessing personal data without consent</li>
+                        <li><strong>Financial damage</strong> — stealing funds, causing business losses</li>
+                        <li><strong>Identity theft</strong> — using stolen credentials to impersonate victims</li>
+                        <li><strong>National security</strong> — attacking government infrastructure</li>
+                        <li><strong>Trust erosion</strong> — people lose confidence in digital services</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</h2>
+                <div class="pitfall-box">
+                    <h4><i class="fas fa-bug"></i> Virus ≠ All Malware</h4>
+                    <p>"Virus" is often used casually to mean any malware, but it's a <strong>specific type</strong>. A
+                        worm is NOT a virus (worms self-replicate, viruses need a host program).</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-tasks"></i> Tasks</h2>
+                <div class="assessment-tasks">
+                    <div class="task-item"><span class="task-level remember">Remember</span>
+                        <p>Name 5 types of malware and explain how each one works.</p>
+                    </div>
+                    <div class="task-item"><span class="task-level understand">Understand</span>
+                        <p>Explain the difference between a hacker and a cracker.</p>
+                    </div>
+                    <div class="task-item"><span class="task-level analyze">Analyze</span>
+                        <p>A hospital's computer system is hit by ransomware. Analyze the ethical, financial, and safety
+                            problems this causes.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-question-circle"></i> Self-Check Quiz</h2>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q1: How does a worm differ from a virus?</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">A worm self-replicates across
+                        networks without needing a host program. A virus attaches to a program and spreads when that
+                        program runs.</div>
+                </div>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q2: What does ransomware do?</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Encrypts the victim's files and
+                        demands a payment (ransom) for the decryption key to restore access.</div>
+                </div>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q3: Name 3 physical risks to computer systems.</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Power surge/failure,
+                        fire/flood, hardware failure, theft, overheating.</div>
+                </div>
+            </section>
+            <nav class="lesson-nav">
+                <a href="testing-methods.html"><span class="nav-label">← Previous</span><span class="nav-title">Testing
+                        Methods</span></a>
+                <a href="data-protection-measures.html"><span class="nav-label">Next →</span><span
+                        class="nav-title">Data Protection Measures</span></a>
+            </nav>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <p>IT-Tea.org © 2025 — NIS Grade 12 Computer Science</p>
+    </footer>
+    <script src="../../js/app.js"></script>
+</body>
+
+</html>

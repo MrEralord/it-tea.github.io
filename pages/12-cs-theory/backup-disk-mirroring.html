@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup &amp; Disk Mirroring — IT-Tea.org</title>
+    <meta name="description" content="Data backup strategies and disk mirroring (RAID). NIS Grade 12 CS.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/lesson.css">
+</head>
+
+<body>
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><i class="fas fa-mug-hot logo-icon"></i><span
+                    class="logo-text">IT-Tea<span class="logo-dot">.org</span></span></a>
+            <nav class="header-nav" id="header-nav">
+                <a href="../../index.html#syllabus">Syllabus</a>
+                <a href="../../index.html#interactive-lab">Lab</a>
+                <a href="../../index.html#assessment-hub">Assessment</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i
+                    class="fas fa-moon"></i></button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+    <main class="lesson-page">
+        <div class="lesson-container">
+            <nav class="lesson-breadcrumb">
+                <a href="../../index.html">Home</a> <span class="sep">/</span>
+                <a href="../../index.html#syllabus">Grade 12 CS</a> <span class="sep">/</span>
+                <span>12.2A — Backup &amp; Disk Mirroring</span>
+            </nav>
+            <div class="lesson-header">
+                <div class="lesson-unit-badge"><i class="fas fa-shield-alt"></i> Unit 12.2A · Term 2</div>
+                <h1 class="lesson-title">Backup &amp; Disk Mirroring</h1>
+                <p class="lesson-intro"><strong>Backup</strong> creates copies of data to restore after loss.
+                    <strong>Disk mirroring</strong> (RAID 1) writes identical data to two disks simultaneously, so if
+                    one fails, the other continues working.</p>
+            </div>
+            <div class="lesson-lo-card">
+                <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
+                <ul class="lesson-lo-list">
+                    <li><span class="lo-code">12.1.2.2</span> Use data protection measures such as data backup and disk
+                        mirroring</li>
+                </ul>
+            </div>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-lightbulb"></i> Conceptual Anchor</h2>
+                <div class="analogy-box">
+                    <h4><i class="fas fa-copy"></i> The Photocopier Analogy</h4>
+                    <p><strong>Backup</strong> = making a photocopy of an important document and storing it in a safe.
+                        If the original is lost, you use the copy. <strong>Disk mirroring</strong> = having two pens
+                        write simultaneously — if one runs out of ink, the other keeps writing without interruption.</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-book"></i> Rules &amp; Theory</h2>
+                <h3 style="font-size:1rem;margin-bottom:var(--space-sm);color:var(--text-primary);">Backup Types</h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>What It Backs Up</th>
+                            <th>Speed</th>
+                            <th>Storage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Full backup</strong></td>
+                            <td>ALL files every time</td>
+                            <td>Slowest to create</td>
+                            <td>Uses most space</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Incremental</strong></td>
+                            <td>Only files changed since LAST backup (any type)</td>
+                            <td>Fastest to create</td>
+                            <td>Uses least space</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Differential</strong></td>
+                            <td>All files changed since last FULL backup</td>
+                            <td>Medium speed</td>
+                            <td>Medium space</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="code-block"><code>BACKUP SCHEDULE EXAMPLE (1 week):
+Mon: FULL backup (all 100 GB)
+Tue: Incremental (only 2 GB changed since Mon)
+Wed: Incremental (only 1 GB changed since Tue)
+Thu: Incremental (only 3 GB changed since Wed)
+Fri: FULL backup (all 100 GB again)
+
+RESTORE from Thursday:
+Need: Mon Full + Tue Inc + Wed Inc + Thu Inc = 4 files
+
+WITH DIFFERENTIAL:
+Mon: FULL backup (100 GB)
+Tue: Differential (2 GB changed since Mon)
+Wed: Differential (3 GB changed since Mon)  ← cumulative!
+Thu: Differential (6 GB changed since Mon)
+
+RESTORE from Thursday:
+Need: Mon Full + Thu Diff = only 2 files (simpler!)</code></div>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Backup
+                    Locations</h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Advantages</th>
+                            <th>Disadvantages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>External HDD/SSD</strong></td>
+                            <td>Fast, portable, no internet needed</td>
+                            <td>Can be lost/stolen/damaged</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cloud storage</strong></td>
+                            <td>Off-site, accessible anywhere, automatic</td>
+                            <td>Needs internet, monthly cost, privacy concerns</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Network (NAS)</strong></td>
+                            <td>Shared, centralised, automatic</td>
+                            <td>Vulnerable to same disaster as main system</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tape drive</strong></td>
+                            <td>Very large capacity, cheap per GB</td>
+                            <td>Slow access, sequential read</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Disk
+                    Mirroring (RAID 1)</h3>
+                <table class="theory-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>How it works</strong></td>
+                            <td>Data is written to two (or more) disks simultaneously</td>
+                        </tr>
+                        <tr>
+                            <td><strong>If one disk fails</strong></td>
+                            <td>The other disk continues without downtime</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advantage</strong></td>
+                            <td>High availability — no data loss from single disk failure</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Disadvantage</strong></td>
+                            <td>Doubles storage cost (need 2× disks for same capacity)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NOT a backup</strong></td>
+                            <td>If you delete a file, it's deleted on BOTH disks. Mirroring ≠ backup!</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note-box">
+                    <h4><i class="fas fa-info-circle"></i> The 3-2-1 Rule</h4>
+                    <p>Best practice: keep <strong>3</strong> copies of data, on <strong>2</strong> different media
+                        types, with <strong>1</strong> stored off-site (e.g., cloud). This protects against hardware
+                        failure AND physical disasters.</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-exclamation-triangle"></i> Common Pitfalls</h2>
+                <div class="pitfall-box">
+                    <h4><i class="fas fa-bug"></i> "RAID IS a Backup"</h4>
+                    <p>RAID (disk mirroring) protects against <strong>hardware failure</strong> only. It does NOT
+                        protect against accidental deletion, ransomware, or corruption — those affect both mirrored
+                        disks. You still need separate backups.</p>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-tasks"></i> Tasks</h2>
+                <div class="assessment-tasks">
+                    <div class="task-item"><span class="task-level remember">Remember</span>
+                        <p>Define full, incremental, and differential backups.</p>
+                    </div>
+                    <div class="task-item"><span class="task-level apply">Apply</span>
+                        <p>Design a weekly backup schedule for a school server. Justify your choice of backup types and
+                            storage location.</p>
+                    </div>
+                    <div class="task-item"><span class="task-level analyze">Analyze</span>
+                        <p>Explain why disk mirroring alone is not sufficient and why separate backups are still needed.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="lesson-section">
+                <h2 class="lesson-section-title"><i class="fas fa-question-circle"></i> Self-Check Quiz</h2>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q1: What is the difference between incremental and differential backups?
+                    </p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Incremental backs up changes
+                        since the LAST backup (any type). Differential backs up all changes since the last FULL backup.
+                    </div>
+                </div>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q2: What is disk mirroring?</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Writing identical data to two
+                        disks simultaneously (RAID 1). If one disk fails, the other continues working.</div>
+                </div>
+                <div class="quiz-item">
+                    <p class="quiz-question">Q3: What is the 3-2-1 backup rule?</p>
+                    <div class="quiz-answer" onclick="this.classList.toggle('revealed')">Keep 3 copies of data, on 2
+                        different media types, with 1 copy stored off-site.</div>
+                </div>
+            </section>
+            <nav class="lesson-nav">
+                <a href="data-protection-measures.html"><span class="nav-label">← Previous</span><span
+                        class="nav-title">Data Protection Measures</span></a>
+                <a href="unauthorized-access.html"><span class="nav-label">Next →</span><span
+                        class="nav-title">Unauthorized Access</span></a>
+            </nav>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <p>IT-Tea.org © 2025 — NIS Grade 12 Computer Science</p>
+    </footer>
+    <script src="../../js/app.js"></script>
+</body>
+
+</html>
