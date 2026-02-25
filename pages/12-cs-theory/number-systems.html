@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/lesson.css">
+    <style>
+        /* Дополнительные стили для трехуровневой практики */
+        .practice-section { margin-bottom: 2rem; }
+        .practice-section h4 { margin-bottom: 1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        details.mark-scheme { background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border-color); }
+        details.mark-scheme summary { font-weight: bold; cursor: pointer; margin-bottom: 0.5rem; }
+    </style>
 </head>
 
 <body>
@@ -47,7 +54,8 @@
                 <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
                 <ul class="lesson-lo-list">
                     <li><span class="lo-code">12.3.5.1</span> Convert between binary, denary, and hexadecimal</li>
-                    <li><span class="lo-code">12.3.5.2</span> Perform binary addition, subtraction, and shifts</li>
+                    <li><span class="lo-code">12.1.1.3</span> Perform the arithmetic operations: addition and multiplication of binary numbers</li>
+                    <li><span class="lo-code">12.3.5.2</span> Perform logical binary shifts</li>
                 </ul>
             </div>
 
@@ -63,7 +71,6 @@
                 </div>
             </div>
 
-            <!-- The Three Systems -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-sort-numeric-up-alt"></i> The Three Number Systems
                 </h2>
@@ -107,7 +114,6 @@
                 </div>
             </section>
 
-            <!-- Conversion: Denary ↔ Binary -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-exchange-alt"></i> Denary ↔ Binary Conversion</h2>
 
@@ -140,7 +146,6 @@ Result: 10011100₂ = 156₁₀</code></div>
                 </div>
             </section>
 
-            <!-- Conversion: Denary ↔ Hex -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-exchange-alt"></i> Denary ↔ Hexadecimal Conversion
                 </h2>
@@ -173,7 +178,6 @@ Result: 1EC₁₆ = 492₁₀</code></div>
                 </div>
             </section>
 
-            <!-- Binary ↔ Hex shortcut -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-bolt"></i> Binary ↔ Hex (Quick Method)</h2>
 
@@ -198,12 +202,10 @@ Result: A3₁₆ = 10100011₂</code></div>
                 </div>
             </section>
 
-            <!-- Binary Arithmetic -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-calculator"></i> Binary Arithmetic</h2>
 
-                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Binary
-                    Addition Rules</h3>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Binary Addition Rules</h3>
                 <table class="theory-table" style="max-width:300px;">
                     <thead>
                         <tr>
@@ -214,30 +216,10 @@ Result: A3₁₆ = 10100011₂</code></div>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
+                        <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
                     </tbody>
                 </table>
 
@@ -250,12 +232,42 @@ Result: A3₁₆ = 10100011₂</code></div>
          1 0 0 0 0 0 0 0 1   (= 257)
 
 Check: 179 + 78 = 257 ✓
-
 Note: Result is 9 bits → overflow if using 8-bit representation!</code></div>
                 </div>
 
-                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Binary
-                    Shifts</h3>
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Binary Multiplication</h3>
+                <p><strong>Why learn this?</strong> It forms the basis of how the Arithmetic Logic Unit (ALU) processes complex calculations using repeated shifts and additions.</p>
+                <table class="theory-table" style="max-width:300px;">
+                    <thead>
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Product</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td></tr>
+                        <tr><td>1</td><td>1</td><td>1</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="worked-example">
+                    <h4><span class="step-num">✓</span> Binary Multiplication: 1011 × 110</h4>
+                    <div class="code-block"><code>        1 0 1 1   (= 11)
+      ×   1 1 0   (=  6)
+      ─────────
+        0 0 0 0   ← (1011 × 0)
+      1 0 1 1 0   ← (1011 × 1, shifted left 1 space)
+    1 0 1 1 0 0   ← (1011 × 1, shifted left 2 spaces)
+    ───────────
+    1 0 0 0 0 1 0 (= 66)
+
+Check: 11 × 6 = 66 ✓</code></div>
+                </div>
+
+                <h3 style="font-size:1rem;margin:var(--space-lg) 0 var(--space-sm);color:var(--text-primary);">Binary Shifts</h3>
                 <table class="theory-table">
                     <thead>
                         <tr>
@@ -290,7 +302,6 @@ Right shift 2: 00000101  (=  5)  → 20 ÷ 4</code></div>
                 </div>
             </section>
 
-            <!-- Pitfalls -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-exclamation-triangle"></i> Pitfalls &amp; Common
                     Errors</h2>
@@ -312,71 +323,72 @@ Right shift 2: 00000101  (=  5)  → 20 ÷ 4</code></div>
                 </div>
             </section>
 
-            <!-- Pro-Tips -->
             <section class="lesson-section">
                 <h2 class="lesson-section-title"><i class="fas fa-star"></i> Pro-Tips for Exams</h2>
                 <div class="pro-tip-box">
                     <h4><i class="fas fa-graduation-cap"></i> Conversion Strategy</h4>
                     <ul>
-                        <li>For binary ↔ hex, <strong>always</strong> use the 4-bit grouping shortcut — it's the fastest
-                        </li>
-                        <li>For denary → binary, write the place values (128, 64, 32, 16, 8, 4, 2, 1) as headers first
-                        </li>
-                        <li>Always <strong>verify</strong> by converting back: if you convert 156 to binary, convert it
-                            back to check you get 156</li>
+                        <li>For binary ↔ hex, <strong>always</strong> use the 4-bit grouping shortcut — it's the fastest</li>
+                        <li>For denary → binary, write the place values (128, 64, 32, 16, 8, 4, 2, 1) as headers first</li>
+                        <li>Always <strong>verify</strong> by converting back: if you convert 156 to binary, convert it back to check you get 156</li>
                         <li>For addition: write carry bits above the calculation to stay organized</li>
                         <li>For shifts: "left = ×2, right = ÷2" — easy mnemonic</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Assessment -->
             <section class="lesson-section">
-                <h2 class="lesson-section-title"><i class="fas fa-tasks"></i> Graded Tasks</h2>
-                <div class="assessment-tasks">
-                    <div class="task-item"><span class="task-level apply">Apply</span>
-                        <p>Convert: (a) 217₁₀ to binary (b) 11010110₂ to denary (c) 3F7₁₆ to denary (d) 194₁₀ to hex</p>
+                <h2 class="lesson-section-title"><i class="fas fa-tasks"></i> Practice Block</h2>
+                
+                <div class="practice-section">
+                    <h4>Tier 1: Knowledge Retrieval</h4>
+                    <div class="quiz-item">
+                        <div class="quiz-question">1. State the purpose of hexadecimal notation in computer science.</div>
+                        <div class="quiz-answer">Click to reveal: It is used as a compact notation for binary numbers, making them easier for humans to read and reducing transcription errors.</div>
                     </div>
-                    <div class="task-item"><span class="task-level apply">Apply</span>
-                        <p>Convert: (a) 10101011₂ to hex (b) B4₁₆ to binary (c) 1A3₁₆ to binary</p>
-                    </div>
-                    <div class="task-item"><span class="task-level apply">Apply</span>
-                        <p>Add in binary: (a) 01100101 + 00111011 (b) 11001100 + 01010101</p>
-                    </div>
-                    <div class="task-item"><span class="task-level apply">Apply</span>
-                        <p>Perform the following shifts on 00110100: (a) left shift by 2 (b) right shift by 3. State the
-                            denary value before and after each shift.</p>
-                    </div>
-                    <div class="task-item"><span class="task-level analyze">Analyze</span>
-                        <p>Why do programmers prefer hexadecimal over binary for writing memory addresses? Use a
-                            specific example to illustrate your answer.</p>
+                    <div class="quiz-item">
+                        <div class="quiz-question">2. Identify the mathematical effect of a logical right shift by 2 places.</div>
+                        <div class="quiz-answer">Click to reveal: Integer division by 4.</div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Quiz -->
-            <section class="lesson-section">
-                <h2 class="lesson-section-title"><i class="fas fa-check-circle"></i> Self-Check Quiz</h2>
-                <div class="quiz-item">
-                    <div class="quiz-question">1. Convert 200 to binary.</div>
-                    <div class="quiz-answer">Click to reveal: 11001000</div>
+                <div class="practice-section">
+                    <h4>Tier 2: Guided Exercises</h4>
+                    <div class="assessment-tasks">
+                        <div class="task-item"><span class="task-level apply">Apply</span>
+                            <p>Convert: (a) 217₁₀ to binary (b) 11010110₂ to denary (c) 3F7₁₆ to denary</p>
+                        </div>
+                        <div class="task-item"><span class="task-level apply">Apply</span>
+                            <p>Calculate in binary: (a) 01100101 + 00111011 (b) 1010 × 101</p>
+                        </div>
+                        <div class="task-item"><span class="task-level apply">Apply</span>
+                            <p>Perform a logical left shift by 2 on the binary value 00011011. State the denary value before and after the shift.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="quiz-item">
-                    <div class="quiz-question">2. Convert 11111111 to denary.</div>
-                    <div class="quiz-answer">Click to reveal: 255</div>
-                </div>
-                <div class="quiz-item">
-                    <div class="quiz-question">3. Convert FF to denary.</div>
-                    <div class="quiz-answer">Click to reveal: 255 (15×16 + 15 = 255)</div>
-                </div>
-                <div class="quiz-item">
-                    <div class="quiz-question">4. What does a left shift by 1 do to a number?</div>
-                    <div class="quiz-answer">Click to reveal: Multiplies the number by 2.</div>
-                </div>
-                <div class="quiz-item">
-                    <div class="quiz-question">5. What is binary overflow?</div>
-                    <div class="quiz-answer">Click to reveal: When the result of a calculation requires more bits than
-                        are available, causing the extra bit to be lost and an incorrect result.</div>
+
+                <div class="practice-section">
+                    <h4>Tier 3: Exam Questions (Cambridge AS Level)</h4>
+                    <div class="assessment-tasks">
+                        <div class="task-item"><span class="task-level analyze">Exam</span>
+                            <p><strong>Q1.</strong> A memory address is given as <code>2F8A</code>. Convert this address into a 16-bit binary number. [2 marks]</p>
+                            <details class="mark-scheme">
+                                <summary>Show Mark Scheme</summary>
+                                <p><strong>1 mark:</strong> Correct conversion of first two digits: <code>0010 1111</code><br>
+                                <strong>1 mark:</strong> Correct conversion of last two digits: <code>1000 1010</code><br>
+                                <strong>Final Answer:</strong> <code>0010 1111 1000 1010</code></p>
+                            </details>
+                        </div>
+                        <div class="task-item"><span class="task-level analyze">Exam</span>
+                            <p><strong>Q2.</strong> Add the following two 8-bit binary numbers. State whether overflow occurs and explain why. [3 marks]<br><code>1001 1101</code><br><code>1100 0101</code></p>
+                            <details class="mark-scheme">
+                                <summary>Show Mark Scheme</summary>
+                                <p><strong>1 mark:</strong> Correct binary sum: <code>0110 0010</code> (excluding the 9th bit)<br>
+                                <strong>1 mark:</strong> States that overflow <strong>does</strong> occur.<br>
+                                <strong>1 mark:</strong> Explanation: The sum requires 9 bits to represent accurately, but only 8 bits are available, so the carry bit is lost.</p>
+                            </details>
+                        </div>
+                    </div>
                 </div>
             </section>
 
